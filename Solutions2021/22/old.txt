@@ -1,0 +1,309 @@
+using System.Numerics;
+using System.Text.RegularExpressions;
+
+using Framework;
+
+namespace Challenges2021;
+
+
+public class Octree
+{
+    public class Node {
+        public Cuboid Cuboid;
+        public Node[] Children;
+
+        public Node(Cuboid cuboid) {
+            Cuboid = cuboid;
+            Children = new Node[8];
+        }
+    }
+    
+    private Node _root;
+
+    public Octree(Cuboid[] cuboids)
+    {
+        _root = BuildOctree(cuboids);
+    }
+
+    private Node BuildOctree(Cuboid[] cuboids)
+    {
+        if (cuboids.Length == 0)
+        {
+            return null;
+        }
+
+        SplitCuboids();
+        
+        var min = cuboids.Min(x=>x.Origin);
+        var max = cuboids.Max(x=>x.Terminus);
+
+        var root = new Node(new(min, max));
+
+        for (int i = 0; i < 8; i++)
+        {
+            root.Children[i] = BuildOctree(childrenCuboids[i]);
+        }
+
+        return root;
+    }
+    
+    public bool IsCuboidInsideNode(Node node, Cuboid cuboid) {
+        var min = node.Cuboid.Origin;
+        var max = node.Cuboid.Terminus;
+        var cMin = cuboid.Origin;
+        var cMax = cuboid.Terminus;
+
+        return cMin.X >= min.X && cMin.Y >= min.Y && cMin.Z >= min.Z &&
+            cMax.X <= max.X && cMax.Y <= max.Y && cMax.Z <= max.Z;
+    }
+
+    public void SplitCuboids()
+    {
+        SplitCuboids(_root);
+    }
+
+    private void SplitCuboids(Node node)
+    {
+        if (node == null)
+        {
+            return;
+        }
+
+        var min = node.Cuboid.Origin;
+        var max = node.Cuboid.Terminus;
+        var middle = (min + max) / 2;
+        var childrenCuboids = new Cuboid[8]
+        {
+            new(min, middle),
+            new(new Vector3(middle.X, min.Y, min.Z), new Vector3(max.X, middle.Y, middle.Z)),
+            new(new Vector3(min.X, middle.Y, min.Z), new Vector3(middle.X, max.Y, middle.Z)),
+            new(new Vector3(middle.X, middle.Y, min.Z), max),
+            new(new Vector3(min.X, min.Y, middle.Z), new Vector3(middle.X, middle.Y, max.Z)),
+            new(new Vector3(middle.X, min.Y, middle.Z), new Vector3(max.X, middle.Y, max.Z)),
+            new(new Vector3(min.X, middle.Y, middle.Z), new Vector3(middle.X, max.Y, max.Z)),
+            new(middle, max)
+        };
+
+        for (int i = 0; i < 8; i++) {
+            node.Children[i] = new Node(childrenCuboids[i]);
+            SplitCuboids(node.Children[i]);
+        }
+    }
+}
+
+public class Cuboid {
+    public Vector3 Origin { get; set; }
+    public Vector3 Terminus { get; set; }
+
+    public int X1 => (int)Origin.X;
+    public int Y1 => (int)Origin.Y;
+    public int Z1 => (int)Origin.Z;
+    public int X2 => (int)Terminus.X;
+    public int Y2 => (int)Terminus.Y;
+    public int Z2 => (int)Terminus.Z;
+
+    public Cuboid(Vector3 origin, Vector3 terminus) {
+        Origin = origin;
+        Terminus = terminus;
+    }
+
+    public Cuboid(int x1, int y1, int z1, int x2, int y2, int z2) {
+        Origin = new Vector3(x1, y1, z1);
+        Terminus = new Vector3(x2, y2, z2);
+    }
+    
+    public bool Intersects(Cuboid other) =>
+        Origin.X <= other.Terminus.X && Terminus.X >= other.Origin.X &&
+        Origin.Y <= other.Terminus.Y && Terminus.Y >= other.Origin.Y &&
+        Origin.Z <= other.Terminus.Z && Terminus.Z >= other.Origin.Z;
+
+    public int Width => (int)((Terminus.X + 1) - Origin.X);
+    public int Height => (int)((Terminus.Y + 1) - Origin.Y);
+    public int Depth => (int)((Terminus.Z + 1) - Origin.Z);
+
+    public int Volume => Width * Height * Depth;
+    
+}
+
+public class Solution22 : SolutionFramework {
+    public Solution22() : base(22) { }
+
+    public record struct Range(int Start, int End);
+    // public record struct Region(int StartX, int StartY, int StartZ, int EndX, int EndY, int EndZ) {
+    //     public Vector3 Origin = new(StartX, StartY, StartZ);
+    //     public Vector3 TerminalPoint = new(EndX, EndY, EndZ);
+    //     public Range RangeX => new (StartX, EndX);
+    //     public Range RangeY => new (StartY, EndY);
+    //     public Range RangeZ => new (StartZ, EndZ);
+    //     public int GetVolume() => (1 + EndX - StartX) * (1 + EndY - StartY) * (1 + EndZ - StartZ);
+    // }
+
+    public record struct OnOffInstruction(bool On, Cuboid Region);
+    
+    public override string[] Solve() {
+        var rebootInstructions = new Queue<OnOffInstruction>();
+        foreach (var line in RawInputSplitByNl) {
+            var matches = Regex.Matches(line, @"-?\d+").Select(x=>int.Parse(x.Value)).ToArray();
+            var onOff = line.Contains("on");
+            rebootInstructions.Enqueue(new OnOffInstruction(onOff, new Cuboid(matches[0], matches[2], matches[4], matches[1], matches[3], matches[5])));
+        }
+
+        long on = 0;
+        var onCoords = new Dictionary<(int, int, int), bool>();
+        foreach (var step in rebootInstructions.Where(s => s is { Region.X1: >= -50, Region.X2: <= 50, Region.Y1: >= -50, Region.Y2: <= 50, Region.Z1: >= -50, Region.Z2: <= 50 })) {
+            for (var x = step.Region.X1; x <= step.Region.X2; x++) {
+                for (var y = step.Region.Y1; y <= step.Region.Y2; y++) {
+                    for (var z = step.Region.Z1; z <= step.Region.Z2; z++) {
+                        if (!onCoords.ContainsKey((x, y, z))) {
+                            onCoords.Add((x,y,z), false);
+                        } 
+                        onCoords[(x,y,z)] = step.On;
+                    }
+                }
+            }
+        }
+        on = 0;
+        foreach (var (k, v) in onCoords) {
+            if (v) {
+                on++;
+            }
+        }
+
+        AssignAnswer1(on);
+
+        //on = rebootInstructions.Aggregate<OnOffInstruction, long>(0, (current, instr) => current + Process(instr, rebootInstructions.TakeWhile(i => i != instr).ToList()));
+        on = Process(rebootInstructions);
+
+        AssignAnswer1(on);
+
+        return Answers;
+    }
+    
+    private static int Process(IEnumerable<OnOffInstruction> instructions) {
+        var totalVol = 0;
+        var turnedOnRegions = new List<Cuboid>();
+        var turnedOffRegions = new List<Cuboid>();
+
+
+        foreach (var (isOn, originalRegion) in instructions) {
+            var rangeVol = 0;
+            var region = originalRegion;
+            var regionVol = region.Volume;
+            
+            if (isOn) {
+                bvh.RemoveDuplicates();
+                var x = bvh.GetAllPoints();
+                var s = x.Sum(y => y.Volume);
+                Console.WriteLine();
+            }
+
+            if (isOn) {
+                if (regionVol <= 0) {
+                    continue;
+                }
+                totalVol += regionVol;
+                turnedOnRegions.Add(region);
+                bvh.Insert(region);
+            } else {
+                totalVol -= rangeVol;
+                turnedOffRegions.Add(region);
+            }
+        }
+
+        return totalVol;
+    }
+}
+
+
+public class BVH {
+    protected BVHNode root = null;
+    public BVHNode Root => root;
+
+}
+
+public class BVHNode {
+    protected static int maxDepth = 5;
+
+    public List<BVHNode> Children;
+    public AABB AABB;
+    
+    public int CountNodes() => (IsInteger(this) ? 1 : 0) + Children.Sum(x => x.CountNodes());
+
+    private static bool IsInteger(BVHNode node) =>
+        Math.Floor(node.AABB.Min.X) == node.AABB.Min.X &&
+        Math.Floor(node.AABB.Min.Y) == node.AABB.Min.Y &&
+        Math.Floor(node.AABB.Min.Z) == node.AABB.Min.Z &&
+        Math.Floor(node.AABB.Max.X) == node.AABB.Max.X &&
+        Math.Floor(node.AABB.Max.Y) == node.AABB.Max.Y &&
+        Math.Floor(node.AABB.Max.Z) == node.AABB.Max.Z;
+
+    public BVHNode(AABB aabb) {
+        Children = new List<BVHNode>();
+        AABB = new AABB(aabb.Min, aabb.Max);
+    }
+    
+    public void Split() {
+        Split(0);
+    }
+
+    public List<AABB> AllAABBs(List<AABB> all) {
+        if (!all.Any(x => x.Min == AABB.Min && x.Max == AABB.Max)) {
+            all.Add(AABB);
+        }
+        if (Children.Any()) {
+            foreach(var child in Children) {
+                all = child.AllAABBs(all.ToList());
+            }
+        }
+        return all;
+    }
+    public void Shake() {
+        if (Children.Any()) {
+            for (var i = Children.Count - 1; i >= 0; --i) {
+                if (!IsInteger(Children[i])) {
+                    Children.RemoveAt(i);
+                }
+            }
+            foreach(var child in Children) {
+                child.Shake();
+            }
+        }
+    }
+    
+    protected void Split(int depth) {
+        if (!Children.Any()) {
+            if (depth < maxDepth) {
+                Children = new List<BVHNode>();
+                Vector3 center = AABB.Center;
+                Vector3 extent = AABB.Extent;
+                
+                var TFL = center + new Vector3(-extent.X, +extent.Y, -extent.Z);
+                var TFR = center + new Vector3(+extent.X, +extent.Y, -extent.Z);
+                var TBL = center + new Vector3(-extent.X, +extent.Y, +extent.Z);
+                var TBR = center + new Vector3(+extent.X, +extent.Y, +extent.Z);
+                var BFL = center + new Vector3(-extent.X, -extent.Y, -extent.Z);
+                var BFR = center + new Vector3(+extent.X, -extent.Y, -extent.Z);
+                var BBL = center + new Vector3(-extent.X, -extent.Y, +extent.Z);
+                var BBR = center + new Vector3(+extent.X, -extent.Y, +extent.Z);
+                Children.Add(new BVHNode(new AABB(TFL, center)));
+                Children.Add(new BVHNode(new AABB(TFR, center)));
+                Children.Add(new BVHNode(new AABB(TBL, center)));
+                Children.Add(new BVHNode(new AABB(TBR, center)));
+                Children.Add(new BVHNode(new AABB(BFL, center)));
+                Children.Add(new BVHNode(new AABB(BFR, center)));
+                Children.Add(new BVHNode(new AABB(BBL, center)));
+                Children.Add(new BVHNode(new AABB(BBR, center)));
+            }
+        }
+
+        if (Children != null && Children.Any()) {
+            foreach (var child in Children) {
+                if (IsInteger(child)) {
+                    child.Split(depth + 1);
+                }
+            }
+        }
+    }
+
+    public bool IsLeaf => !Children.Any();
+}
