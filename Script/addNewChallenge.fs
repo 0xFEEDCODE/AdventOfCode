@@ -3,9 +3,10 @@ open System.IO
 open System.Text
 open Microsoft.FSharp.Collections
 
+
 let challengeTemplate challengeNo = $"""using Framework;
 
-namespace Challenges2022;
+namespace Solutions2023;
 
 public class Solution{challengeNo} : SolutionFramework
 {{
@@ -20,21 +21,19 @@ public class Solution{challengeNo} : SolutionFramework
 let executingAssembly = System.Reflection.Assembly.GetExecutingAssembly()
 
 //Add new challenge solution file
-let solutionPath =
-    using(new StreamReader(executingAssembly.GetManifestResourceStream(executingAssembly.GetName().Name + ".solutionPath.txt")))
-        (fun sr -> sr.ReadLine())
+let baseDirectory = __SOURCE_DIRECTORY__
+let solutionPath = Directory.GetParent(baseDirectory).FullName
 
-let challengeDirectories = Directory.GetDirectories $"{solutionPath}Challenges 2022"
+let challengeDirectories = Directory.GetDirectories $"{solutionPath}\\Solutions2023"
 
-let lastChallengeNo = challengeDirectories |>
-        Array.choose(fun dirName ->
+let lastChallengeNo = challengeDirectories |> Array.choose(fun dirName ->
             match System.Int32.TryParse (dirName.Split('\\') |> Array.last) with
             | true,int -> Some int
             | _ -> None) |> Array.max
 
 let newChallengeNo = lastChallengeNo + 1
 
-let newChallengeDirectory = Directory.CreateDirectory $"{solutionPath}Challenges 2022\\{newChallengeNo}"
+let newChallengeDirectory = Directory.CreateDirectory $"{solutionPath}\\Solutions2023\\{newChallengeNo}"
 File.Create $"{newChallengeDirectory.FullName}\\input.txt" |> ignore
 let content = (challengeTemplate newChallengeNo) |> Encoding.UTF8.GetBytes
 
@@ -45,7 +44,7 @@ using(File.Create $"{newChallengeDirectory.FullName}\\Solution{newChallengeNo}.c
 //
     
 //Update cs proj to copy input file
-let csprojFileFilepath = $"{solutionPath}Challenges 2022\\Challenges 2022.csproj"
+let csprojFileFilepath = $"{solutionPath}\\Solutions2023\\Solutions2023.csproj"
 let csprojFileContent = List.ofSeq (File.ReadLines csprojFileFilepath)
 
 let updatedCsprojFileContent =
@@ -61,12 +60,12 @@ using (new FileStream(csprojFileFilepath, FileMode.Create, FileAccess.ReadWrite,
     
 // Update Executioner file
 //
-let executionerFileFilepath = $"{solutionPath}Challenges 2022\\Program.cs"
+let executionerFileFilepath = $"{solutionPath}\\Solutions2023\\Program.cs"
 let executionerFileContent = List.ofSeq (File.ReadLines executionerFileFilepath)
 
 let updatedExecutionerFileContent =
     let insertionIndex = (executionerFileContent |> List.findIndex (fun x -> x.Contains("INSERTION POINT MARKER")))
-    executionerFileContent |> List.insertAt insertionIndex $"        new Challenges2022.Solution{newChallengeNo}().Solve,"
+    executionerFileContent |> List.insertAt insertionIndex $"        new Solutions2023.Solution{newChallengeNo}().Solve,"
     |> List.reduce (fun acc line -> $"{acc}\n{line}") |> Encoding.UTF8.GetBytes
     
 using (new FileStream(executionerFileFilepath, FileMode.Create, FileAccess.ReadWrite, FileShare.None))
