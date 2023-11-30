@@ -28,7 +28,7 @@ void RunChallengeSolutions(bool onlyRunLastChallenge)
         new Challenges2022.Solution23().Solve,
         new Challenges2022.Solution24().Solve,
         */
-        new Challenges2022.Solution25().Solve,
+        new Challenges2022.Solution1().Solve,
         // INSERTION POINT MARKER (Used with script)
     };
 
@@ -46,7 +46,6 @@ void RunChallengeSolutions(bool onlyRunLastChallenge)
                 {'\r'}Answer 1: {answers[0]}
                 {'\r'}Answer 2: {answers[1]}");
     }
-
 }
 
 RunChallengeSolutions(true);

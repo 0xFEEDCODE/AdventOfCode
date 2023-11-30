@@ -8,7 +8,7 @@ public class Solution1 : SolutionFramework
 
     public override string[] Solve()
     {
-        var splitByGroups = RawInput.Split("\r\n\r\n");
+        var splitByGroups = RawInput.SplitByGroup();
 
         var allSums = new List<int>();
 

@@ -73,6 +73,9 @@ public static class Extensions {
 
         return lines.ToArray();
     }
+    
+    public static string[] SplitByGroup(this string text) =>
+        text.Split(new[] { Environment.NewLine + Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
     // Stackz
     //probably shouldn't be using stack if needed to insert to bottom but who cares =)
