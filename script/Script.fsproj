@@ -7,7 +7,6 @@
 
     <ItemGroup>
         <Compile Include="addNewChallenge.fs"/>
-        <EmbeddedResource Include="solutionPath.txt"/>
     </ItemGroup>
 
     <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
