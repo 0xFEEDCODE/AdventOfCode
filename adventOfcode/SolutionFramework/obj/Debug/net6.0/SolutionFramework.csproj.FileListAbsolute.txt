@@ -1,0 +1,12 @@
+C:\Users\synca\source\repos\solutions\SMSM\adventOfcode\SolutionFramework\bin\Debug\net6.0\SolutionFramework.deps.json
+C:\Users\synca\source\repos\solutions\SMSM\adventOfcode\SolutionFramework\bin\Debug\net6.0\SolutionFramework.dll
+C:\Users\synca\source\repos\solutions\SMSM\adventOfcode\SolutionFramework\bin\Debug\net6.0\SolutionFramework.pdb
+C:\Users\synca\source\repos\solutions\SMSM\adventOfcode\SolutionFramework\obj\Debug\net6.0\SolutionFramework.csproj.AssemblyReference.cache
+C:\Users\synca\source\repos\solutions\SMSM\adventOfcode\SolutionFramework\obj\Debug\net6.0\SolutionFramework.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\synca\source\repos\solutions\SMSM\adventOfcode\SolutionFramework\obj\Debug\net6.0\SolutionFramework.AssemblyInfoInputs.cache
+C:\Users\synca\source\repos\solutions\SMSM\adventOfcode\SolutionFramework\obj\Debug\net6.0\SolutionFramework.AssemblyInfo.cs
+C:\Users\synca\source\repos\solutions\SMSM\adventOfcode\SolutionFramework\obj\Debug\net6.0\SolutionFramework.csproj.CoreCompileInputs.cache
+C:\Users\synca\source\repos\solutions\SMSM\adventOfcode\SolutionFramework\obj\Debug\net6.0\SolutionFramework.dll
+C:\Users\synca\source\repos\solutions\SMSM\adventOfcode\SolutionFramework\obj\Debug\net6.0\refint\SolutionFramework.dll
+C:\Users\synca\source\repos\solutions\SMSM\adventOfcode\SolutionFramework\obj\Debug\net6.0\SolutionFramework.pdb
+C:\Users\synca\source\repos\solutions\SMSM\adventOfcode\SolutionFramework\obj\Debug\net6.0\ref\SolutionFramework.dll

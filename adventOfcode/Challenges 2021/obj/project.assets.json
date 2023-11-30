@@ -1,0 +1,133 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "KdTree/1.4.1": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.0/KdTreeLib.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/KdTreeLib.dll": {}
+        }
+      },
+      "SolutionFramework/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/SolutionFramework.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SolutionFramework.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "KdTree/1.4.1": {
+      "sha512": "yWbb35v/V9y88SLLMUPTlAN3pQEoPhDfZf9PApFnlU4kLtwVQ75U9vW5mW4/alQnLBuLKWBKcy4W5xK95mYsuA==",
+      "type": "package",
+      "path": "kdtree/1.4.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "kdtree.1.4.1.nupkg.sha512",
+        "kdtree.nuspec",
+        "lib/net45/KdTreeLib.dll",
+        "lib/net451/KdTreeLib.dll",
+        "lib/net452/KdTreeLib.dll",
+        "lib/net46/KdTreeLib.dll",
+        "lib/net461/KdTreeLib.dll",
+        "lib/net462/KdTreeLib.dll",
+        "lib/net47/KdTreeLib.dll",
+        "lib/net471/KdTreeLib.dll",
+        "lib/netcoreapp2.0/KdTreeLib.dll",
+        "lib/netstandard2.0/KdTreeLib.dll"
+      ]
+    },
+    "SolutionFramework/1.0.0": {
+      "type": "project",
+      "path": "../SolutionFramework/SolutionFramework.csproj",
+      "msbuildProject": "../SolutionFramework/SolutionFramework.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "KdTree >= 1.4.1",
+      "SolutionFramework >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\synca\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\synca\\source\\repos\\solutions\\SMSM\\adventOfcode\\Challenges 2021\\Challenges 2021.csproj",
+      "projectName": "Challenges 2021",
+      "projectPath": "C:\\Users\\synca\\source\\repos\\solutions\\SMSM\\adventOfcode\\Challenges 2021\\Challenges 2021.csproj",
+      "packagesPath": "C:\\Users\\synca\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\synca\\source\\repos\\solutions\\SMSM\\adventOfcode\\Challenges 2021\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\synca\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "C:\\Users\\synca\\source\\repos\\solutions\\SMSM\\adventOfcode\\SolutionFramework\\SolutionFramework.csproj": {
+              "projectPath": "C:\\Users\\synca\\source\\repos\\solutions\\SMSM\\adventOfcode\\SolutionFramework\\SolutionFramework.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "KdTree": {
+            "target": "Package",
+            "version": "[1.4.1, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "vltXhBJZADWDWPYiNV0RC53Vs8qCq8ez3QsZrSKi6olcVcJQ3y7hjP4CCkMD669hAppdElEjTwGwwcsAoYMACw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\synca\\source\\repos\\solutions\\SMSM\\adventOfcode\\Script\\Script.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\synca\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}

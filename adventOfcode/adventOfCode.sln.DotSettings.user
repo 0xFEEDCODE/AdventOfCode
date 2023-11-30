@@ -1,0 +1,47 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
+  &lt;Assembly Path="C:\Users\synca\.nuget\packages\kdtree\1.4.1\lib\netcoreapp2.0\KdTreeLib.dll" /&gt;&#xD;
+&lt;/AssemblyExplorer&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=122cdf50_002De1ba_002D4237_002D9e45_002D91075e58873a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Eggsecute2021 #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2021&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2021.Eggsecute2021 (True)&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2022&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2022.Eggsecute2022 (True)&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=134971ea_002De059_002D4a4f_002Dbecd_002Dc35c3db79506/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Eggsecute2021" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2021&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2021.Eggsecute2021 (True)&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2022&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2022.Eggsecute2022 (True)&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5cade962_002Dfbfa_002D4e15_002Da2dc_002De1a02222d669/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Eggsecute2021 #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2021&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2021.Eggsecute2021 (True)&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2022&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2022.Eggsecute2022 (True)&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b7b944cc_002Db2a8_002D4ce1_002D9cf2_002D029108fcad8a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Eggsecute2021 #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2021&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2021.Eggsecute2021 (True)&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2022&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2022.Eggsecute2022 (True)&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c8d01057_002Dae6b_002D48f3_002D8f29_002Dcbe86bf6d89b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Eggsecute2021 #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2021&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2021.Eggsecute2021 (True)&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2022&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::24DA3C21-8E39-4A8C-A261-5495CCA18B1E::net6.0::Executioner.Executioner.Eggsecute2022.Eggsecute2022 (True)&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=subpacket/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=subpackets/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

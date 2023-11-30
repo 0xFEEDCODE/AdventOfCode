@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "2pjl9JMR8pCItC16Yr7w0DdNRe0Qip82CRfm/bRR/wmw4KBwunKOu9BlJ4DT0iW/Q76h3/vve4a/3ceOq7M3gA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\synca\\source\\repos\\solutions\\SMSM\\adventOfcode\\Challenges 2021\\Challenges 2021.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\synca\\.nuget\\packages\\kdtree\\1.4.1\\kdtree.1.4.1.nupkg.sha512"
+  ],
+  "logs": []
+}
