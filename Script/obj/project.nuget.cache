@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "vltXhBJZADWDWPYiNV0RC53Vs8qCq8ez3QsZrSKi6olcVcJQ3y7hjP4CCkMD669hAppdElEjTwGwwcsAoYMACw==",
+  "dgSpecHash": "MvVJ4J337K8+SWHs2ObLjlQA9CJR/+F1xVz/j+ehuAnZR75Xjg8OU3VR21gmOs/kFckFn4c+bQJZl8jtUwgf8Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\synca\\source\\repos\\solutions\\SMSM\\adventOfcode\\Script\\Script.fsproj",
+  "projectFilePath": "C:\\Users\\synca\\source\\repos\\AdventOfCode\\Script\\Script.fsproj",
   "expectedPackageFiles": [
-    "C:\\Users\\synca\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512"
+    "C:\\Users\\synca\\.nuget\\packages\\fsharp.core\\7.0.400\\fsharp.core.7.0.400.nupkg.sha512"
   ],
   "logs": []
 }

@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\synca\\source\\repos\\solutions\\SMSM\\adventOfcode\\Script\\Script.fsproj": {}
+    "C:\\Users\\synca\\source\\repos\\AdventOfCode\\Script\\Script.fsproj": {}
   },
   "projects": {
-    "C:\\Users\\synca\\source\\repos\\solutions\\SMSM\\adventOfcode\\Script\\Script.fsproj": {
+    "C:\\Users\\synca\\source\\repos\\AdventOfCode\\Script\\Script.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\synca\\source\\repos\\solutions\\SMSM\\adventOfcode\\Script\\Script.fsproj",
+        "projectUniqueName": "C:\\Users\\synca\\source\\repos\\AdventOfCode\\Script\\Script.fsproj",
         "projectName": "Script",
-        "projectPath": "C:\\Users\\synca\\source\\repos\\solutions\\SMSM\\adventOfcode\\Script\\Script.fsproj",
+        "projectPath": "C:\\Users\\synca\\source\\repos\\AdventOfCode\\Script\\Script.fsproj",
         "packagesPath": "C:\\Users\\synca\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\synca\\source\\repos\\solutions\\SMSM\\adventOfcode\\Script\\obj\\",
+        "outputPath": "C:\\Users\\synca\\source\\repos\\AdventOfCode\\Script\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\synca\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\6.0.400\\FSharp\\library-packs": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.400\\FSharp\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,7 +39,7 @@
             "FSharp.Core": {
               "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
               "target": "Package",
-              "version": "[6.0.5, )",
+              "version": "[7.0.400, )",
               "generatePathProperty": true
             }
           },
@@ -63,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
