@@ -2,8 +2,8 @@
 {
     var challenges = new List<Func<string[]>>
     {
-        new Challenges2019.Solution1().Solve,
-
+        //new Challenges2019.Solution1().Solve,
+        new Challenges2019.Solution2().Solve,
     };
 
     for (int i = 0; i < challenges.Count; i++)

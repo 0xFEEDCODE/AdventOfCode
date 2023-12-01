@@ -10,6 +10,9 @@ public abstract class SolutionFramework
     protected string[] Answers => new[] { Answer1, Answer2 };
     protected string RawInput;
     
+    protected double VarA;
+    protected double VarB;
+    
     [DllImport("user32.dll")]
     internal static extern bool OpenClipboard(IntPtr hWndNewOwner);
     [DllImport("user32.dll")]
