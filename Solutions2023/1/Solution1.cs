@@ -20,7 +20,7 @@ public class Solution1 : SolutionFramework
         {
             var occurrences = GetSubstringsContainedByString(l, digits);
             n1 ??= 1 + allNumbers.FindIndexOfItem(occurrences.First()) % 10;
-            n2 = 1+ allNumbers.FindIndexOfItem(occurrences.Last()) % 10;
+            n2 = 1 + allNumbers.FindIndexOfItem(occurrences.Last()) % 10;
 
             sum += (n1.ToString() + n2.Value).ParseInt();
             n1 = null;
@@ -36,7 +36,7 @@ public class Solution1 : SolutionFramework
         {
             var occurrences = GetSubstringsContainedByString(l, allNumbers);
             n1 ??= 1 + allNumbers.FindIndexOfItem(occurrences.First()) % 10;
-            n2 = 1+ allNumbers.FindIndexOfItem(occurrences.Last()) % 10;
+            n2 = 1 + allNumbers.FindIndexOfItem(occurrences.Last()) % 10;
 
             sum += (n1.ToString() + n2.Value).ParseInt();
             n1 = null;

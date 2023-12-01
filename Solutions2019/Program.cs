@@ -1,13 +1,12 @@
-void RunChallengeSolutions(bool onlyRunLastChallenge)
+﻿void RunChallengeSolutions(bool onlyRunLastChallenge)
 {
     var challenges = new List<Func<string[]>>
     {
-        new Solutions2023.Solution1().Solve,
-        new Solutions2023.Solution2().Solve,
-        // INSERTION POINT MARKER (Used with script)
+        new Challenges2019.Solution1().Solve,
+
     };
 
-    for (var i = 0; i < challenges.Count; i++)
+    for (int i = 0; i < challenges.Count; i++)
     {
         if (onlyRunLastChallenge && i != challenges.Count - 1)
             continue;
@@ -16,7 +15,7 @@ void RunChallengeSolutions(bool onlyRunLastChallenge)
 
         Console.WriteLine($@"
                 {'\r'}-----------------------
-                {'\r'}Solution {i + 1}:
+                {'\r'}Challenge {i+1}:
                 {'\r'}Answer 1: {answers[0]}
                 {'\r'}Answer 2: {answers[1]}");
     }

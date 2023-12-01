@@ -21,7 +21,6 @@
         new Challenges2020.Solution17().Solve,
     };
 
-    // Time to get cooking 🍳
     for (int i = 0; i < challenges.Count; i++)
     {
         if (onlyRunLastChallenge && i != challenges.Count - 1)
