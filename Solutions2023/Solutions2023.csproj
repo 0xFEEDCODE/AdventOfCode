@@ -8,15 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Framework\Framework.csproj" />
+        <ProjectReference Include="..\Framework\Framework.csproj"/>
     </ItemGroup>
 
 
     <ItemGroup>
-      <None Update="1\input.txt">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-      <!--INSERTION POINT MARKER (Used with script)-->
+        <None Update="1\input.txt">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <!--INSERTION POINT MARKER (Used with script)-->
     </ItemGroup>
 
 </Project>

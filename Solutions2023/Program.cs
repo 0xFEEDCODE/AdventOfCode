@@ -15,7 +15,7 @@ void RunChallengeSolutions(bool onlyRunLastChallenge)
 
         Console.WriteLine($@"
                 {'\r'}-----------------------
-                {'\r'}Challenge {i+1}:
+                {'\r'}Challenge {i + 1}:
                 {'\r'}Answer 1: {answers[0]}
                 {'\r'}Answer 2: {answers[1]}");
     }
