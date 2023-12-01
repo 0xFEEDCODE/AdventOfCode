@@ -95,6 +95,14 @@ public static class Extensions
     public static string[] SplitByGroup(this string text) =>
         text.Split(new[] { Environment.NewLine + Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
+    public static void ForEachInputLine(this string text, Action<string> action)
+    {
+        foreach (var l in SplitByNewline(text))
+        {
+            action(l);
+        }
+    }
+
     public static int ParseInt(this string s) => int.Parse(s);
     public static double ParseDouble(this string s) => double.Parse(s);
     public static double ParseLong(this string s) => long.Parse(s);

@@ -12,10 +12,10 @@ public class Solution1 : SolutionFramework
         int? n1 = null;
         int? n2 = null;
         double s = 0;
-        foreach (var l in RawInputSplitByNl)
+        
+        ForEachInputLine(l =>
         {
             var acc = string.Empty;
-
             foreach (var ch in l)
             {
                 acc += ch;
@@ -38,7 +38,7 @@ public class Solution1 : SolutionFramework
             s += (n1.ToString() + n2).ParseInt();
             n1 = null;
             n2 = null;
-        }
+        });
 
         AssignAnswer1(s);
         return Answers;

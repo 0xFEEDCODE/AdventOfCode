@@ -15,6 +15,8 @@ public abstract class SolutionFramework
     protected int[] IntInputSplitByNl => RawInput.SplitByNewline().Select(int.Parse).ToArray();
     protected double[] DoubleInputSplitByNl => RawInput.SplitByNewline().Select(double.Parse).ToArray();
     protected long[] LongInputSplitByNl => RawInput.SplitByNewline().Select(long.Parse).ToArray();
+    
+    protected void ForEachInputLine(Action<string> action) => RawInput.ForEachInputLine(action);
 
     protected void AssignAnswer1(int answer)
     {
