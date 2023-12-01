@@ -3,6 +3,7 @@ void RunChallengeSolutions(bool onlyRunLastChallenge)
     var challenges = new List<Func<string[]>>
     {
         new Solutions2023.Solution1().Solve,
+        new Solutions2023.Solution2().Solve,
         // INSERTION POINT MARKER (Used with script)
     };
 
