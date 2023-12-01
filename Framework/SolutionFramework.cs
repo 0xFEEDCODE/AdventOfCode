@@ -12,8 +12,15 @@ public abstract class SolutionFramework
     }
 
     protected string[] RawInputSplitByNl => RawInput.SplitByNewline();
+    protected int[] IntInputSplitByNl => RawInput.SplitByNewline().Select(int.Parse).ToArray();
+    protected double[] DoubleInputSplitByNl => RawInput.SplitByNewline().Select(double.Parse).ToArray();
+    protected long[] LongInputSplitByNl => RawInput.SplitByNewline().Select(long.Parse).ToArray();
 
     protected void AssignAnswer1(int answer)
+    {
+        Answers[0] = answer.ToString();
+    }
+    protected void AssignAnswer1(double answer)
     {
         Answers[0] = answer.ToString();
     }
@@ -27,6 +34,10 @@ public abstract class SolutionFramework
     }
 
     protected void AssignAnswer2(int answer)
+    {
+        Answers[1] = answer.ToString();
+    }
+    protected void AssignAnswer2(double answer)
     {
         Answers[1] = answer.ToString();
     }
