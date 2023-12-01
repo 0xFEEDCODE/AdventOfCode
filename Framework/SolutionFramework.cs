@@ -15,6 +15,39 @@ public abstract class SolutionFramework
     protected int[] IntInputSplitByNl => RawInput.SplitByNewline().Select(int.Parse).ToArray();
     protected double[] DoubleInputSplitByNl => RawInput.SplitByNewline().Select(double.Parse).ToArray();
     protected long[] LongInputSplitByNl => RawInput.SplitByNewline().Select(long.Parse).ToArray();
+
+    protected bool StringContainsSubstring(string str, string sub)
+    {
+        var acc = string.Empty;
+        foreach (var ch in str)
+        {
+            acc += ch;
+            if (acc.Contains(sub))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    protected ICollection<string> GetSubstringsContainedByString(string str, string[] subs)
+    {
+        var occurrences = new List<string>();
+
+        str.ForEach(i =>
+        {
+            var sk = str.Skip(i).AsString();
+            str.Skip(i).AsString().ForEach(j =>
+            {
+                var substring = str.Substring(i, j + 1);
+                if (subs.Contains(substring))
+                {
+                    occurrences.Add(substring);
+                }
+            });
+        });
+        return occurrences;
+    }
     
     protected void ForEachInputLine(Action<string> action) => RawInput.ForEachInputLine(action);
 

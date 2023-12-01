@@ -6,41 +6,44 @@ public class Solution1 : SolutionFramework
 {
     public Solution1() : base(1) { }
 
-    private string[] valid = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "edkqweqwejs", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+    private static string[] digits = Enumerable.Range(1, 9).Select(x => x.ToString()).ToArray();
+    private static string[] nonDigits = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "_" };
+    private string[] allNumbers = nonDigits.Concat(digits).ToArray();
+        
     public override string[] Solve()
     {
         int? n1 = null;
         int? n2 = null;
-        double s = 0;
+        double sum = 0;
         
         ForEachInputLine(l =>
         {
-            var acc = string.Empty;
-            foreach (var ch in l)
-            {
-                acc += ch;
-                var i = 1;
-                foreach (var v in valid)
-                {
-                    if (acc.Contains(v))
-                    {
-                        n1 ??= i % 10;
-                        n2 = i % 10;
-                        acc = acc.Remove(acc.Length - v.Length, 1);
-                        acc = acc.Insert(acc.Length - v.Length + 1, "0");
-                    }
+            var occurrences = GetSubstringsContainedByString(l, digits);
+            n1 ??= 1 + allNumbers.FindIndexOfItem(occurrences.First()) % 10;
+            n2 = 1+ allNumbers.FindIndexOfItem(occurrences.Last()) % 10;
 
-                    i++;
-                }
-            }
-
-            var n = (n1.HasValue ? n1.Value.ToString() : string.Empty) + (n2.HasValue ? n2.Value : string.Empty);
-            s += (n1.ToString() + n2).ParseInt();
+            sum += (n1.ToString() + n2.Value).ParseInt();
             n1 = null;
             n2 = null;
         });
 
-        AssignAnswer1(s);
+        AssignAnswer1(sum);
+        
+        n1 = null;
+        n2 = null;
+        sum = 0;
+        ForEachInputLine(l =>
+        {
+            var occurrences = GetSubstringsContainedByString(l, allNumbers);
+            n1 ??= 1 + allNumbers.FindIndexOfItem(occurrences.First()) % 10;
+            n2 = 1+ allNumbers.FindIndexOfItem(occurrences.Last()) % 10;
+
+            sum += (n1.ToString() + n2.Value).ParseInt();
+            n1 = null;
+            n2 = null;
+        });
+        
+        AssignAnswer2(sum);
         return Answers;
     }
 }

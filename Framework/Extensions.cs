@@ -102,6 +102,14 @@ public static class Extensions
             action(l);
         }
     }
+    
+    public static void ForEach(this string str, Action<int> action)
+    {
+        for (var i = 0; i < str.Length; i++)
+        {
+            action(i);
+        }
+    }
 
     public static int ParseInt(this string s) => int.Parse(s);
     public static double ParseDouble(this string s) => double.Parse(s);
@@ -128,4 +136,12 @@ public static class Extensions
 
     //ICollection
     public static bool HasNumberOfDistinct<T>(this ICollection<T> collection, int number) => collection.Distinct().Count() == number;
+    
+    //Array
+    public static int? FindIndexOfItem(this string[] arr, string item) => Array.FindIndex(arr, i => i == item);
+    public static int? FindIndexOfItem(this int[] arr, int item) => Array.FindIndex(arr, i => i == item);
+    public static int? FindIndexOfItem(this double[] arr, double item) => Array.FindIndex(arr, i => i == item);
+    
+    //IEnumerable
+    public static string AsString(this IEnumerable<char> arr) => new(arr.ToArray());
 }
