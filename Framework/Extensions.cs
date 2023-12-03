@@ -254,7 +254,7 @@ public static class Extensions
     }
     
     
-    //Int
+    //Numeric
     public static IEnumerable<int> GetDigits(this int number)
     {
         var individualFactor = 0;
@@ -281,4 +281,7 @@ public static class Extensions
         var digitAtPosition = quotient % 10;
         return (quotient - digitAtPosition + digitToReplace) * divisor + remainder;
     }
+
+    public static int GetNthDigit(this int value, int n) => (value / (int)Math.Pow(10,n-1)) % 10;
+    public static double GetNthDigit(this double value, int n) => (value / (int)Math.Pow(10,n-1)) % 10;
 }
