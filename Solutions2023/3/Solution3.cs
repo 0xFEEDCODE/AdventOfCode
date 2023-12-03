@@ -39,10 +39,7 @@ public class Solution3 : SolutionFramework
             }
         });
 
-        bool IsSymbol(char c)
-        {
-            return !char.IsDigit(c) && c != '.';
-        }
+        bool IsSymbol(char c) => !char.IsDigit(c) && c != '.';
         
         foreach (var (num, positions) in numWithPositions)
         {
