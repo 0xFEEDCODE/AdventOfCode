@@ -8,20 +8,15 @@ public class Solution3 : SolutionFramework
 
     public override string[] Solve()
     {
-        var gr = (RawInputSplitByNl.Length, RawInputSplitByNl[0].Length).CreateGrid<char>();
-        gr.ForEachCell((i, j) =>
-        {
-            gr[i][j] = RawInputSplitByNl[i][j];
-        });
-        
+        var grid = InputAsGrid();
         var numWithPositions = new List<(int, List<Pos2D>)>();
         
         var n = string.Empty;
         var nP = new List<Pos2D>();
         var parsingN = false;
-        gr.ForEachCell(pos =>
+        grid.ForEachCell(pos =>
         {
-            var cell = gr.GetCell(pos);
+            var cell = grid.GetCell(pos);
             if (Char.IsDigit(cell))
             {
                 nP.Add(pos);
@@ -46,7 +41,7 @@ public class Solution3 : SolutionFramework
             var valid = false;
             foreach (var pos in positions)
             {
-                if (gr.IsAnyNeighbor(pos, IsSymbol))
+                if (grid.IsAnyNeighbor(pos, IsSymbol))
                 {
                     NumSlot+=num;
                     break;
@@ -59,12 +54,12 @@ public class Solution3 : SolutionFramework
         n = string.Empty;
         nP = new List<Pos2D>();
         parsingN = false;
-        gr.ForEachCell(pos =>
+        grid.ForEachCell(pos =>
         {
-            var cell = gr.GetCell(pos);
+            var cell = grid.GetCell(pos);
             if (cell == '*')
             {
-                var adjacent = gr.GetAllAdjacentCells(pos);
+                var adjacent = grid.GetAllAdjacentCells(pos);
                 var found = numWithPositions.Where(np => adjacent.Any(vk => np.Item2.Contains(vk.pos)));
                 if (found.Count() == 2)
                 {

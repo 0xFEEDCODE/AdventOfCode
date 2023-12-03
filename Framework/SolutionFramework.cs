@@ -43,6 +43,16 @@ public abstract class SolutionFramework
     protected double[] DoubleInputSplitByNl => RawInput.SplitByNewline().Select(double.Parse).ToArray();
     protected long[] LongInputSplitByNl => RawInput.SplitByNewline().Select(long.Parse).ToArray();
 
+    protected char[][] InputAsGrid()
+    {
+        var grid = (RawInputSplitByNl.Length, RawInputSplitByNl[0].Length).CreateGrid<char>();
+        grid.ForEachCell((i, j) =>
+        {
+            grid[i][j] = RawInputSplitByNl[i][j];
+        });
+        return grid;
+    }
+
     protected ICollection<string> GetSubstringsContainedByString(string str, string[] subs)
     {
         var occurrences = new List<string>();
