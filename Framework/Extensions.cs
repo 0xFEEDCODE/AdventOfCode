@@ -32,12 +32,64 @@ public static class Extensions
     public static T NeighborCellLeft<T>(this T[][] grid, int i, int j) => grid[i][j - 1];
     public static T NeighborCellRight<T>(this T[][] grid, int i, int j) => grid[i][j + 1];
     public static T NeighborCellDown<T>(this T[][] grid, int i, int j) => grid[i + 1][j];
+    public static T NeighborCellUp<T>(this T[][] grid, Pos2D pos) => grid[pos.X - 1][pos.Y];
+    public static T NeighborCellLeft<T>(this T[][] grid, Pos2D pos) => grid[pos.X][pos.Y - 1];
+    public static T NeighborCellRight<T>(this T[][] grid, Pos2D pos) => grid[pos.X][pos.Y + 1];
+    public static T NeighborCellDown<T>(this T[][] grid, Pos2D pos) => grid[pos.X + 1][pos.Y];
 
     //Clockwise diagonals
     public static T NeighborCellTopLeft<T>(this T[][] grid, int i, int j) => grid[i - 1][j - 1];
     public static T NeighborCellTopRight<T>(this T[][] grid, int i, int j) => grid[i - 1][j + 1];
     public static T NeighborCellBottomRight<T>(this T[][] grid, int i, int j) => grid[i + 1][j + 1];
     public static T NeighborCellBottomLeft<T>(this T[][] grid, int i, int j) => grid[i + 1][j - 1];
+    public static T NeighborCellTopLeft<T>(this T[][] grid, Pos2D pos) => grid[pos.X - 1][pos.Y - 1];
+    public static T NeighborCellTopRight<T>(this T[][] grid, Pos2D pos) => grid[pos.X - 1][pos.Y + 1];
+    public static T NeighborCellBottomRight<T>(this T[][] grid, Pos2D pos) => grid[pos.X + 1][pos.Y + 1];
+    public static T NeighborCellBottomLeft<T>(this T[][] grid, Pos2D pos) => grid[pos.X + 1][pos.Y - 1];
+
+
+    public static bool IsWithinBounds<T>(this T[][] grid, int i, int j) => i >= 0 && i < grid.Length && j >= 0 && j < grid[0].Length;
+
+    public static bool IsAnyNeighbor<T>(this T[][] grid, Pos2D pos, Func<T, bool> eval, bool includeDiagonal = true) => grid.IsAnyNeighbor(pos.X, pos.Y, eval, includeDiagonal);
+    public static bool IsAnyNeighbor<T>(this T[][] grid, int i, int j, Func<T, bool> eval, bool includeDiagonal = true)
+    {
+        var found = false;
+        EncloseInTryCatch(() => { found = eval(grid.NeighborCellUp(i, j));});
+        EncloseInTryCatch(() => { found = found || eval(grid.NeighborCellDown(i, j));});
+        EncloseInTryCatch(() => { found = found || eval(grid.NeighborCellLeft(i, j));});
+        EncloseInTryCatch(() => { found = found || eval(grid.NeighborCellRight(i, j));});
+        if (includeDiagonal)
+        {
+            EncloseInTryCatch(() => { found = found || eval(grid.NeighborCellTopLeft(i, j)); });
+            EncloseInTryCatch(() => { found = found || eval(grid.NeighborCellTopRight(i, j)); });
+            EncloseInTryCatch(() => { found = found || eval(grid.NeighborCellBottomLeft(i, j)); });
+            EncloseInTryCatch(() => { found = found || eval(grid.NeighborCellBottomRight(i, j)); });
+        }
+        return found;
+    }
+    
+    public static ICollection<(Pos2D pos, T val)> GetAllAdjacentCells<T>(this T[][] grid, Pos2D pos, bool includeDiagonal = true) 
+        => grid.GetAllAdjacentCells(pos.X, pos.Y, includeDiagonal).Select(x => (new Pos2D(x.i, x.j), x.val)).ToArray();
+    
+    public static ICollection<(int i, int j, T val)> GetAllAdjacentCells<T>(this T[][] grid, int i, int j, bool includeDiagonal = true)
+    {
+        var adjacent = new List<(int i, int j, T val)>();
+        if (grid.IsWithinBounds(i - 1, j)) { adjacent.Add((i - 1, j, grid[i - 1][j]));}
+        if (grid.IsWithinBounds(i + 1, j)) { adjacent.Add((i + 1, j, grid[i + 1][j]));}
+        if (grid.IsWithinBounds(i, j - 1)) { adjacent.Add((i, j - 1, grid[i][j - 1]));}
+        if (grid.IsWithinBounds(i, j + 1)) { adjacent.Add((i, j + 1, grid[i][j + 1]));}
+        if (includeDiagonal)
+        {
+            if (grid.IsWithinBounds(i - 1, j - 1)) { adjacent.Add((i - 1, j - 1, grid[i - 1][j - 1])); }
+            if (grid.IsWithinBounds(i - 1, j + 1)) { adjacent.Add((i - 1, j + 1, grid[i - 1][j + 1])); }
+            if (grid.IsWithinBounds(i + 1, j + 1)) { adjacent.Add((i + 1, j + 1, grid[i + 1][j + 1])); }
+            if (grid.IsWithinBounds(i + 1, j - 1)) { adjacent.Add((i + 1, j - 1, grid[i + 1][j - 1])); }
+        }
+        return adjacent;
+    }
+
+    public static T GetCell<T>(this T[][] grid, Pos2D pos) => grid[pos.X][pos.Y];
+    public static void SetCell<T>(this T[][] grid, Pos2D pos, T val) => grid[pos.X][pos.Y] = val;
 
     public static void InitRows<T>(this T[][] grid, int rowLen)
     {
@@ -54,6 +106,17 @@ public static class Extensions
             for (var j = 0; j < grid[i].Length; j++)
             {
                 action.Invoke(i, j);
+            }
+        }
+    }
+    
+    public static void ForEachCell<T>(this T[][] grid, Action<Pos2D> action)
+    {
+        for (var i = 0; i < grid.Length; i++)
+        {
+            for (var j = 0; j < grid[i].Length; j++)
+            {
+                action.Invoke(new Pos2D(i, j));
             }
         }
     }

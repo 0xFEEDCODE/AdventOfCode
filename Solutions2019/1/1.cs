@@ -28,7 +28,7 @@ public class Solution1 : SolutionFramework
             }
         }
         
-        AssignAnswer2(sum, true);
+        AssignAnswer2(sum);
 
         return Answers;
     }

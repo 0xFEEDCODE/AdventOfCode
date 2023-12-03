@@ -78,6 +78,6 @@ public class Solution2 : SolutionFramework
             i++;
         }
         
-        AssignAnswer2(NumSlot, true);
+        AssignAnswer2(NumSlot);
     }
 }

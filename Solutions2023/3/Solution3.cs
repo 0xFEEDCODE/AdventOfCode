@@ -6,7 +6,6 @@ public class Solution3 : SolutionFramework
 {
     public Solution3() : base(3) { }
 
-    record Pos(int X, int Y);
     public override string[] Solve()
     {
         var gr = (RawInputSplitByNl.Length, RawInputSplitByNl[0].Length).CreateGrid<char>();
@@ -15,24 +14,25 @@ public class Solution3 : SolutionFramework
             gr[i][j] = RawInputSplitByNl[i][j];
         });
         
-        var nPositions = new List<(int, List<Pos>)>();
+        var numWithPositions = new List<(int, List<Pos2D>)>();
         
         var n = string.Empty;
-        var nP = new List<Pos>();
+        var nP = new List<Pos2D>();
         var parsingN = false;
-        gr.ForEachCell((i, j) =>
+        gr.ForEachCell(pos =>
         {
-            if (Char.IsDigit(gr[i][j]))
+            var cell = gr.GetCell(pos);
+            if (Char.IsDigit(cell))
             {
-                nP.Add(new Pos(i,j));
-                n += gr[i][j];
+                nP.Add(pos);
+                n += cell;
                 parsingN = true;
             } else
             {
                 if (parsingN)
                 {
-                    nPositions.Add((n.ParseInt(), nP));
-                    nP = new List<Pos>();
+                    numWithPositions.Add((n.ParseInt(), nP));
+                    nP = new List<Pos2D>();
                     n = string.Empty;
                 }
                 parsingN = false;
@@ -44,99 +44,39 @@ public class Solution3 : SolutionFramework
             return !char.IsDigit(c) && c != '.';
         }
         
-        
-        foreach (var vk in nPositions)
+        foreach (var (num, positions) in numWithPositions)
         {
-            var np = vk.Item2;
             var valid = false;
-            foreach (var pos in np)
+            foreach (var pos in positions)
             {
-                Extensions.EncloseInTryCatch(() => {
-                    if (IsSymbol(gr.NeighborCellDown(pos.X, pos.Y))) { valid = true; }
-                });
-                Extensions.EncloseInTryCatch(() =>
+                if (gr.IsAnyNeighbor(pos, IsSymbol))
                 {
-                    if (IsSymbol(gr.NeighborCellLeft(pos.X, pos.Y))) { valid = true; }
-                });
-                Extensions.EncloseInTryCatch(() =>
-                {
-                    if (IsSymbol(gr.NeighborCellRight(pos.X, pos.Y)) ) { valid = true; }
-                });
-                Extensions.EncloseInTryCatch(() =>
-                {
-                    if (IsSymbol(gr.NeighborCellUp(pos.X, pos.Y)) ) { valid = true; }
-                });
-                Extensions.EncloseInTryCatch(() =>
-                {
-                    if (IsSymbol(gr.NeighborCellBottomLeft(pos.X, pos.Y)) ) { valid = true; }
-                });
-                Extensions.EncloseInTryCatch(() =>
-                {
-                    if (IsSymbol(gr.NeighborCellBottomRight(pos.X, pos.Y)) ) { valid = true; }
-                });
-                Extensions.EncloseInTryCatch(() =>
-                {
-                    if (IsSymbol(gr.NeighborCellTopLeft(pos.X, pos.Y)) ) { valid = true; }
-                });
-                Extensions.EncloseInTryCatch(() =>
-                {
-                    if (IsSymbol(gr.NeighborCellTopRight(pos.X, pos.Y)) ) { valid = true; }
-                });
-                if (valid)
-                {
-                    NumSlot+=vk.Item1;
+                    NumSlot+=num;
                     break;
                 }
             }
 
         }
-        AssignAnswer1(NumSlot, true);
+        AssignAnswer1();
         
         n = string.Empty;
-        nP = new List<Pos>();
+        nP = new List<Pos2D>();
         parsingN = false;
-        NumSlot = 0;
-        gr.ForEachCell((i, j) =>
+        gr.ForEachCell(pos =>
         {
-            if (gr[i][j] == '*')
+            var cell = gr.GetCell(pos);
+            if (cell == '*')
             {
-                var found = nPositions.Where(np =>
-                {
-                    var r = new Pos(i, j + 1);
-                    var l = new Pos(i, j - 1);
-                    var u = new Pos(i - 1, j);
-                    var d = new Pos(i + 1, j);
-                    var d1 = new Pos(i + 1, j + 1);
-                    var d2 = new Pos(i + 1, j - 1);
-                    var d3 = new Pos(i - 1, j + 1);
-                    var d4 = new Pos(i - 1, j - 1);
-                    return (np.Item2.Contains(r) ||
-                        np.Item2.Contains(l) ||
-                        np.Item2.Contains(u) ||
-                        np.Item2.Contains(d) ||
-                        np.Item2.Contains(d1) ||
-                        np.Item2.Contains(d2) ||
-                        np.Item2.Contains(d3) ||
-                        np.Item2.Contains(d4));
-                });
+                var adjacent = gr.GetAllAdjacentCells(pos);
+                var found = numWithPositions.Where(np => adjacent.Any(vk => np.Item2.Contains(vk.pos)));
                 if (found.Count() == 2)
                 {
                     NumSlot += found.First().Item1 * found.Last().Item1;
                 }
             }
         });
-        AssignAnswer2(NumSlot, true);
+        AssignAnswer2();
         
-        Console.WriteLine();
         return Answers;
-    }
-    
-    private static void PrintGrid(char[][] grid) {
-        for (int i = 0; i < grid.Length; i++) {
-            Console.WriteLine();
-            for (int j = 0; j < grid[i].Length; j++) {
-                Console.WriteLine(grid[i][j]);
-            }
-        }
     }
 }

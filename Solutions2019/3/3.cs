@@ -196,7 +196,7 @@ public class Solution3 : SolutionFramework
                 }
             }
             
-            AssignAnswer2(lowestNSteps, true);
+            AssignAnswer2(lowestNSteps);
         }
         return;
 

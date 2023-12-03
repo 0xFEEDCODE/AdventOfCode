@@ -37,7 +37,7 @@ public abstract class SolutionFramework
     {
         RawInput = File.ReadAllText($"{challengeNo}/input.txt");
     }
-
+    
     protected string[] RawInputSplitByNl => RawInput.SplitByNewline();
     protected int[] IntInputSplitByNl => RawInput.SplitByNewline().Select(int.Parse).ToArray();
     protected double[] DoubleInputSplitByNl => RawInput.SplitByNewline().Select(double.Parse).ToArray();
@@ -64,21 +64,26 @@ public abstract class SolutionFramework
     
     protected void ForEachInputLine(Action<string> action) => RawInput.ForEachInputLine(action);
 
-    protected void AssignAnswer1<T>(T answer, bool copyToClipboard = false)
+    protected void AssignAnswer1(bool resetNumSlot = true)
+    {
+        AssignAnswer1(NumSlot);
+        NumSlot = resetNumSlot ? 0 : NumSlot;
+    }
+    protected void AssignAnswer2(bool resetNumSlot = true)
+    {
+        AssignAnswer2(NumSlot);
+        NumSlot = resetNumSlot ? 0 : NumSlot;
+    }
+    
+    protected void AssignAnswer1<T>(T answer, bool resetNumSlot = true)
     {
         Answer1 = answer.ToString();
-        if (copyToClipboard)
-        {
-            ClipboardAnswer1();
-        }
+        NumSlot = resetNumSlot ? 0 : NumSlot;
     }
-    protected void AssignAnswer2<T>(T answer, bool copyToClipboard = false)
+    protected void AssignAnswer2<T>(T answer, bool resetNumSlot = true)
     {
         Answer2 = answer.ToString();
-        if (copyToClipboard)
-        {
-            ClipboardAnswer2();
-        }
+        NumSlot = resetNumSlot ? 0 : NumSlot;
     }
 
     public abstract string[] Solve();
