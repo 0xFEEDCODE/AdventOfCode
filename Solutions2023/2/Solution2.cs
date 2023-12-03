@@ -49,13 +49,13 @@ public class Solution2 : SolutionFramework
             }
             if (isPossible(sets))
             {
-                VarA += i;
+                NumSlot += i;
             }
             
             i++;
         }
         
-        AssignAnswer1(VarA);
+        AssignAnswer1(NumSlot);
     }
     
     private void Part2()
@@ -73,11 +73,11 @@ public class Solution2 : SolutionFramework
                 sets.Add(new Set(color, quantity));
             }
             var f = Fewest(sets);
-            VarA += f.Blue * f.Green * f.Red;
+            NumSlot += f.Blue * f.Green * f.Red;
             
             i++;
         }
         
-        AssignAnswer2(VarA, true);
+        AssignAnswer2(NumSlot, true);
     }
 }

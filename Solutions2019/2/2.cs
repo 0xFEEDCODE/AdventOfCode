@@ -15,7 +15,7 @@ public class Solution2 : SolutionFramework
         { OpCode.Add, (i, i1) => i+i1 },
         { OpCode.Mul, (i, i1) => i*i1 },
         { OpCode.N, (i, i1) => 0 }
-    };
+};
         
     public override string[] Solve()
     {

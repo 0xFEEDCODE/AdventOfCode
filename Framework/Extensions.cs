@@ -112,6 +112,7 @@ public static class Extensions
     }
 
     public static int ParseInt(this string s) => int.Parse(s);
+    public static int ParseInt(this char c) => int.Parse(c.ToString());
     public static double ParseDouble(this string s) => double.Parse(s);
     public static double ParseLong(this string s) => long.Parse(s);
 
@@ -189,4 +190,32 @@ public static class Extensions
         }
     }
     
+    
+    //Int
+    public static IEnumerable<int> GetDigits(this int number)
+    {
+        var individualFactor = 0;
+        var tennerFactor = Convert.ToInt32(Math.Pow(10, number.ToString().Length));
+        do
+        {
+            number -= tennerFactor * individualFactor;
+            tennerFactor /= 10;
+            individualFactor = number / tennerFactor;
+
+            yield return individualFactor;
+        } while (tennerFactor > 1);
+    }
+    
+    public static int ReplaceNthDigit(this int value, int digitPosition, int digitToReplace, bool fromLeft = true)
+    {
+        if (fromLeft) {
+            digitPosition = 1 + (int)Math.Ceiling(Math.Log10(value)) - digitPosition;
+        }
+
+        var divisor = (int)Math.Pow(10, digitPosition - 1);
+        var quotient = value / divisor;
+        var remainder = value % divisor;
+        var digitAtPosition = quotient % 10;
+        return (quotient - digitAtPosition + digitToReplace) * divisor + remainder;
+    }
 }

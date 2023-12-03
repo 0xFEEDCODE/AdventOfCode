@@ -4,7 +4,8 @@
     {
         //new Challenges2019.Solution1().Solve,
         // new Challenges2019.Solution2().Solve,
-        new Challenges2019.Solution3().Solve,
+        //new Challenges2019.Solution3().Solve,
+        new Challenges2019.Solution4().Solve,
     };
 
     for (int i = 0; i < challenges.Count; i++)
