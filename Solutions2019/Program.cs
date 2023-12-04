@@ -6,7 +6,8 @@
         // new Challenges2019.Solution2().Solve,
         //new Challenges2019.Solution3().Solve,
         //new Challenges2019.Solution4().Solve,
-        new Challenges2019.Solution5().Solve,
+        //new Challenges2019.Solution5().Solve,
+        new Challenges2019.Solution6().Solve,
     };
 
     for (int i = 0; i < challenges.Count; i++)
