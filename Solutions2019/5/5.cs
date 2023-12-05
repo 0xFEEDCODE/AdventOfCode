@@ -2,8 +2,8 @@ using Framework;
 
 namespace Challenges2019;
 
-enum OpCode { _, Add, Mul, In, Out, JumpT, JumpF, Lt, Eq, Halt }
-public enum Mode { Position, Immediate};
+enum OpCode { _, Add, Mul, In, Out, JumpT, JumpF, Lt, Eq, RelBaseOffset, Halt }
+public enum Mode { Position, Immediate, Relative };
 
 public class Solution5 : SolutionFramework
 {
