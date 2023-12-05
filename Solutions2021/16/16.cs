@@ -255,7 +255,7 @@ public class Solution16 : SolutionFramework {
 
     public override string[] Solve() {
         var parsingPos = 0;
-        var packetInBin = string.Join("", RawInputSplitByNl.ToArray()).HexToBin();
+        var packetInBin = string.Join("", InputNlSplit.ToArray()).HexToBin();
 
         var packet = new Packet(new PacketHeader(packetInBin[..6].AsString()), packetInBin[6..]);
         var processedPacket = ProcessPacket(packet);

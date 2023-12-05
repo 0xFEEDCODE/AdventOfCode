@@ -28,7 +28,7 @@ public class Solution8 : SolutionFramework
     public override string[] Solve()
     {
         var instructions = new List<InstructionWithExecutionHistory>() { };
-        foreach (var line in RawInputSplitByNl)
+        foreach (var line in InputNlSplit)
         {
             var spl = line.Split(' ');
             var instrType = spl.First() switch

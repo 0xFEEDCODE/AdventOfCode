@@ -18,9 +18,9 @@ public class Solution11 : SolutionFramework
 
     public override string[] Solve()
     {
-        var originalSeating = (RawInputSplitByNl.Length, RawInputSplitByNl.First().Length).CreateGrid<SeatLayoutCell>();
+        var originalSeating = (InputNlSplit.Length, InputNlSplit.First().Length).CreateGrid<SeatLayoutCell>();
         var row = 0;
-        foreach (var line in RawInputSplitByNl)
+        foreach (var line in InputNlSplit)
         {
             var col = 0;
             foreach (var item in line)
@@ -41,7 +41,7 @@ public class Solution11 : SolutionFramework
         while (!stabilized)
         {
             stabilized = true;
-            var newSeating = (RawInputSplitByNl.Length, RawInputSplitByNl.First().Length).CreateGrid<SeatLayoutCell>();
+            var newSeating = (InputNlSplit.Length, InputNlSplit.First().Length).CreateGrid<SeatLayoutCell>();
             newSeating.ForEachCell((i, j) =>
             {
                 if (lastSeating[i][j] == SeatLayoutCell.Floor)
@@ -91,7 +91,7 @@ public class Solution11 : SolutionFramework
         while (!stabilized)
         {
             stabilized = true;
-            var newSeating = (RawInputSplitByNl.Length, RawInputSplitByNl.First().Length).CreateGrid<SeatLayoutCell>();
+            var newSeating = (InputNlSplit.Length, InputNlSplit.First().Length).CreateGrid<SeatLayoutCell>();
             newSeating.ForEachCell((i, j) =>
             {
                 if (lastSeating[i][j] == SeatLayoutCell.Floor)

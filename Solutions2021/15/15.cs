@@ -6,11 +6,11 @@ public class Solution15 : SolutionFramework {
     public Solution15() : base(15) { }
 
     public override string[] Solve() {
-        var H = RawInputSplitByNl.Length;
-        var W = RawInputSplitByNl.First().Length;
+        var H = InputNlSplit.Length;
+        var W = InputNlSplit.First().Length;
         var grid = (H,W).CreateGrid<int>();
         var i = 0;
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var j = 0;
             foreach (var n in line) {
                 grid[i][j] = int.Parse(n.ToString());

@@ -8,14 +8,14 @@ public class Solution12 : SolutionFramework
 
     public override string[] Solve()
     {
-        var grid = (RawInputSplitByNl.Length, RawInputSplitByNl.First().Length).CreateGrid<char>();
-        var results = (RawInputSplitByNl.Length, RawInputSplitByNl.First().Length).CreateGrid<int>();
+        var grid = (InputNlSplit.Length, InputNlSplit.First().Length).CreateGrid<char>();
+        var results = (InputNlSplit.Length, InputNlSplit.First().Length).CreateGrid<int>();
         results.ForEachCell((i, j) => results[i][j] = 0);
 
         var startcoords = (0, 0);
         var endCoords = (0, 0);
         int i = 0;
-        foreach (var line in RawInputSplitByNl)
+        foreach (var line in InputNlSplit)
         {
             int j = 0;
             foreach (var ch in line)

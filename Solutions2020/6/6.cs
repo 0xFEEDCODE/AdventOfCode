@@ -10,7 +10,7 @@ public class Solution6 : SolutionFramework {
         var groupAnswers = new Dictionary<char, int>();
         var groupMemberCount = 0;
         
-        foreach (var line in RawInputSplitByNl.Append(string.Empty)) {
+        foreach (var line in InputNlSplit.Append(string.Empty)) {
             if (string.IsNullOrEmpty(line)) {
                 allGroupsAnswers.Add((groupMemberCount, groupAnswers));
                 groupAnswers = new Dictionary<char, int>();

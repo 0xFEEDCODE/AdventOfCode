@@ -15,7 +15,7 @@ public class Solution7 : SolutionFramework {
         var bags = new Dictionary<Bag, List<BagEntry>>();
         const string currentBagPattern = @"(?<x>.*) bags contain";
         const string bagsContainedPattern = @"\d .+?(?=bag)";
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var currentBag = Regex.Match(line, currentBagPattern).Groups.Values.Skip(1).Single().Value;
             var containingBags = Regex.Matches(line, bagsContainedPattern).Select(m => m.Value);
             var quantityAndBagPattern = @"(?<x>\d+) (?<y>[\w\s]+)\s";

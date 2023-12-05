@@ -61,7 +61,7 @@ public class Solution19 : SolutionFramework {
 
         var scannerNo = 0;
         Scanner scanner = default;
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var matches = Regex.Matches(line, @"\d+");
             if(line.Contains("scanner"))
             {

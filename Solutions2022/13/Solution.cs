@@ -77,7 +77,7 @@ public class Solution13 : SolutionFramework {
     private void ParseInput(List<PairOfPackets> entries) {
         var i = 0;
         var packetPair = new PairOfPackets();
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             if (i == 2) {
                 if (line != "")
                     throw new InvalidOperationException();

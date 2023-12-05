@@ -33,7 +33,7 @@ public class Solution20 : SolutionFramework {
     public Solution20() : base(20) { }
     
     public override string[] Solve() {
-        var alg = RawInputSplitByNl.First().Select(x=> {
+        var alg = InputNlSplit.First().Select(x=> {
             return x switch {
                 '.' => 0,
                 '#' => 1,
@@ -47,7 +47,7 @@ public class Solution20 : SolutionFramework {
         outputImage.SetAllCellsToValue(0);
 
         var i = 150;
-        foreach (var line in RawInputSplitByNl.Skip(2)) {
+        foreach (var line in InputNlSplit.Skip(2)) {
             var j = 150;
             foreach (var ch in line) {
                 inputImage[i][j] = ch switch {

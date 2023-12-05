@@ -7,7 +7,7 @@ public class Solution5 : SolutionFramework {
 
     public override string[] Solve() {
         var seatIds = new List<long>();
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var rowLower = 0;
             var rowUpper = 127;
             

@@ -12,7 +12,7 @@ public class Solution25 : SolutionFramework {
     public override string[] Solve() {
         long sum = 0;
         var nums = new List<long>();
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var num = line.Reverse();
             var c = Calc(new string(num.ToArray()));
             nums.Add(c);

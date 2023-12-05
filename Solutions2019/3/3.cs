@@ -36,7 +36,7 @@ public class Solution3 : SolutionFramework
         var calcMDistance = (int x1, int y1, int x2, int y2) => Math.Abs(x1 - x2) + Math.Abs(y1 - y2);
         var calcMDistanceCoord = (Coord c1, Coord c2) => calcMDistance(c1.X, c1.Y, c2.X, c2.Y);
         
-        for (var i = 0; i < RawInputSplitByNl.Length; i+=2)
+        for (var i = 0; i < InputNlSplit.Length; i+=2)
         {
             var wires1 = new List<(Coord From, Coord To)>();
             var wires2 = new List<(Coord From, Coord To)>();
@@ -44,7 +44,7 @@ public class Solution3 : SolutionFramework
             for (var j = 0; j < 2; j++)
             {
                 var currentPosition = startPos;
-                foreach (var s in RawInputSplitByNl[i+j].Split(','))
+                foreach (var s in InputNlSplit[i+j].Split(','))
                 {
                     var d = (Direction)Enum.Parse(typeof(Direction), s[0].ToString(), true);
                     var n = s.Skip(1).AsString().ParseInt();
@@ -118,7 +118,7 @@ public class Solution3 : SolutionFramework
     {
         var startPos = new Coord(0, 0);
 
-        for (var i = 0; i < RawInputSplitByNl.Length; i+=2)
+        for (var i = 0; i < InputNlSplit.Length; i+=2)
         {
             var wires1 = new List<(Coord From, Coord To, int NStepsToReach, Direction dir)>();
             var wires2 = new List<(Coord From, Coord To, int NStepsToReach, Direction dir)>();
@@ -128,7 +128,7 @@ public class Solution3 : SolutionFramework
             for (var j = 0; j < 2; j++)
             {
                 var currentPosition = startPos;
-                foreach (var s in RawInputSplitByNl[i+j].Split(','))
+                foreach (var s in InputNlSplit[i+j].Split(','))
                 {
                     var d = (Direction)Enum.Parse(typeof(Direction), s[0].ToString(), true);
                     var n = s.Skip(1).AsString().ParseInt();

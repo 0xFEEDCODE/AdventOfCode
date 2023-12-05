@@ -165,7 +165,7 @@ public class Solution15 : SolutionFramework {
         grid.SetAllCellsToValue('.');
 
         var sensors = new List<Sensor>();
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var split = line.Split(':');
             var cSensor = Regex.Matches(split[0], @"-?\d*\.{0,1}\d+").ToList().Select(x=>int.Parse(x.Value)).ToArray();
             var cBeacon = Regex.Matches(split[1], @"-?\d*\.{0,1}\d+").ToList().Select(x=>int.Parse(x.Value)).ToArray();

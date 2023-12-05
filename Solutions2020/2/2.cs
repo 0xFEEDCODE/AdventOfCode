@@ -15,7 +15,7 @@ public class Solution2 : SolutionFramework
     public override string[] Solve() {
         var entriesToValidate = new List<ValidationEntry>();
 
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             const string pattern = @"(?<x>\d+)-(?<y>\d+) (?<z>\w): (?<xx>\w+)";
             var groups = Regex.Match(line, pattern).Groups;
             entriesToValidate.Add(

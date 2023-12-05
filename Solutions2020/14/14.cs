@@ -15,7 +15,7 @@ public class Solution14 : SolutionFramework
     {
         var entries = new List<Entry>();
         Entry? _entry = null;
-        foreach (var line in RawInputSplitByNl)
+        foreach (var line in InputNlSplit)
         {
             var value = line.Split(' ').Last();
             if (line.StartsWith("mask"))

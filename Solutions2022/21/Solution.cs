@@ -18,7 +18,7 @@ public partial class Solution21 : SolutionFramework {
         var dict = new Dictionary<string, Func<long>>();
         
         const string pattern = @"(?<x>.+) (?<y>.+) (?<z>.+)";
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var split = line.Split(':');
             var name = split[0];
             var value = split[1].Trim();

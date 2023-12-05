@@ -62,13 +62,13 @@ public class Solution4 : SolutionFramework {
 
         var bingoBoards = new List<BingoBoard>();
 
-        var numbersToDraw = Regex.Matches(RawInputSplitByNl.First(), pattern).Select(x => int.Parse(x.Value)).ToArray();
+        var numbersToDraw = Regex.Matches(InputNlSplit.First(), pattern).Select(x => int.Parse(x.Value)).ToArray();
 
         var row = 0;
         var bingoBoard = (5, 5).CreateGrid<int>();
         var boardMarked = (5, 5).CreateGrid<bool>();
         var boardNr = 0;
-        foreach (var line in RawInputSplitByNl.Skip(1)) {
+        foreach (var line in InputNlSplit.Skip(1)) {
             var matches = Regex.Matches(line, pattern);
             if (matches.Count == 0)
                 continue;

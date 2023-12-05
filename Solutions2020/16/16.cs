@@ -23,7 +23,7 @@ public class Solution16 : SolutionFramework
         var rangePattern = @"(\d+)-(\d+)";
         var scanning = Scanning.Ranges;
         var _row = 0;
-        foreach (var line in RawInputSplitByNl)
+        foreach (var line in InputNlSplit)
         {
             if (line.Contains("your ticket"))
             {

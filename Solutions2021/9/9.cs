@@ -8,12 +8,12 @@ public class Solution9 : SolutionFramework {
     public enum Direction { Up, Down, Right, Left };
 
     public override string[] Solve() {
-        var H = RawInputSplitByNl.Length;
-        var W = RawInputSplitByNl[0].Length;
+        var H = InputNlSplit.Length;
+        var W = InputNlSplit[0].Length;
         var heightMap = (H, W).CreateGrid<int>();
 
         var i = 0;
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             for (var j = 0; j < line.Length; j++) {
                 heightMap[i][j] = int.Parse(line[j].ToString());
             }

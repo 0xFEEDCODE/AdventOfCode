@@ -12,7 +12,7 @@ public class Solution5 : SolutionFramework {
     public override string[] Solve() {
         var lines = new List<Line>();
         var linesMap = new Dictionary<int, Dictionary<int, int>>();
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var coords = Regex.Matches(line, @"\d+").Select(x=>int.Parse(x.Value)).ToArray();
             lines.Add(new Line(coords[0], coords[1], coords[2], coords[3]));
         }

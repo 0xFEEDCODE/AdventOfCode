@@ -6,6 +6,7 @@ void RunChallengeSolutions(bool onlyRunLastChallenge)
         new Solutions2023.Solution2().Solve,
         new Solutions2023.Solution3().Solve,
         new Solutions2023.Solution4().Solve,
+        new Solutions2023.Solution5().Solve,
         // INSERTION POINT MARKER (Used with script)
     };
 

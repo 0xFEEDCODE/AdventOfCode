@@ -36,7 +36,7 @@ public partial class Solution20 : SolutionFramework {
         
         var decryptKey = 811589153;
         var idx = 0;
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var n = long.Parse(line) * decryptKey;
             originalOrder.Enqueue(n);
             originals.Add(n);

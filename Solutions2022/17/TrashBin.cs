@@ -4,7 +4,7 @@ public partial class Solution17 {
     
     private (List<Direction>, Dictionary<char, List<Solution15.Coord>>) ParseInput() {
         var pushes = new List<Direction>();
-        foreach (var ch in RawInputSplitByNl.SelectMany(x => x)) {
+        foreach (var ch in InputNlSplit.SelectMany(x => x)) {
             if (ch == '<')
                 pushes.Add(Direction.Left);
             if (ch == '>')

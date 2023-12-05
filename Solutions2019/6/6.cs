@@ -31,7 +31,7 @@ public class Solution6 : SolutionFramework
 
         var memoized = new Dictionary<string, int>();
 
-        foreach (var s in RawInputSplitByNl)
+        foreach (var s in InputNlSplit)
         {
             var s1 = s.Split(')');
             var obj1 = s1.First();
@@ -46,12 +46,12 @@ public class Solution6 : SolutionFramework
 
         foreach (var p in pairs)
         {
-            NumSlot += PredecessorsCount(p);
+            NSlot += PredecessorsCount(p);
         }
         
         AssignAnswer1();
         
-        NumSlot = Distance("SAN", "YOU");
+        NSlot = Distance("SAN", "YOU");
         AssignAnswer2();
         
         return Answers;

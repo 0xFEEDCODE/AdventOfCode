@@ -14,9 +14,9 @@ public class Solution3 : SolutionFramework {
 
     public override string[] Solve() {
         var patternRepeatCount = 100;
-        var grid = (RawInputSplitByNl.Length, RawInputSplitByNl[0].Length * patternRepeatCount).CreateGrid<Field>();
+        var grid = (InputNlSplit.Length, InputNlSplit[0].Length * patternRepeatCount).CreateGrid<Field>();
         var row = 0;
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var col = 0;
             foreach (var ch in line) {
                 for (var rep = 0; rep < patternRepeatCount; rep++) {

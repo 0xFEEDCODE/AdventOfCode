@@ -18,7 +18,7 @@ public partial class Solution23 {
 
         var i = 0;
         var id = 1;
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             for (var j = 0; j < line.Length; j++) {
                 if (line[j] == '#') {
                     grid[i + startOffsetI][j + startOffsetJ] = Tile.Elf;

@@ -86,7 +86,7 @@ public class Solution14 : SolutionFramework
         var grid = (1000, 1000).CreateGrid<Entity>();
         grid.SetAllCellsToValue(new Entity(Empty));
         
-        foreach (var line in RawInputSplitByNl)
+        foreach (var line in InputNlSplit)
             PutRocksOnAGrid(line.Split(" -> "), grid);
         return grid;
     }

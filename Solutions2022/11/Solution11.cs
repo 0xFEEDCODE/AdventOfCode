@@ -115,7 +115,7 @@ public class Solution11 : SolutionFramework
     {
         var monkeys = new List<Monkey>();
         var parsedMonkey = new Monkey();
-        foreach (var line in RawInputSplitByNl)
+        foreach (var line in InputNlSplit)
         {
             if (line.StartsWith("Monkey"))
             {

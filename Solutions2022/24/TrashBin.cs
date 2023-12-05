@@ -11,7 +11,7 @@ public partial class Solution24 {
         var i = 0;
         var blizzards = new List<Blizzard>() { };
         var player = new Player(new Coord(0, 1));
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var j = 0;
             foreach (var ch in line) {
                 var tile = ch switch {

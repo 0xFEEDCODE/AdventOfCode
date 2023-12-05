@@ -9,7 +9,7 @@ public class Solution2 : SolutionFramework
     public override string[] Solve() {
         var x = 0;
         var y = 0;
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var split = line.Split(' ');
             var n = int.Parse(split[1]);
             switch (split[0]) {
@@ -30,7 +30,7 @@ public class Solution2 : SolutionFramework
         x = 0;
         y = 0;
         var aim = 0;
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var split = line.Split(' ');
             var n = int.Parse(split[1]);
             switch (split[0]) {

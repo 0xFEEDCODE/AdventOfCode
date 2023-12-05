@@ -51,7 +51,7 @@ public class Solution12 : SolutionFramework
 
     public override string[] Solve()
     {
-        var instructions = RawInputSplitByNl.Select(line => new ShipMoveInstruction(new Action(line[..1]), int.Parse(line[1..]))).ToList();
+        var instructions = InputNlSplit.Select(line => new ShipMoveInstruction(new Action(line[..1]), int.Parse(line[1..]))).ToList();
         var ship = new Ship(Direction.E, (0, 0));
 
         foreach (var instruction in instructions)

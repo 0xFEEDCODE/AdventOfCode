@@ -11,7 +11,7 @@ public class Solution10 : SolutionFramework
 
     public override string[] Solve()
     {
-        var adapters = RawInputSplitByNl.Select(int.Parse).ToList();
+        var adapters = InputNlSplit.Select(int.Parse).ToList();
         adapters.Sort();
 
         var differences = new Dictionary<int, int>{{1,0},{2,0},{3,0}};

@@ -239,7 +239,7 @@ public class Solution18 : SolutionFramework {
     }
 
     public override string[] Solve() {
-        var numbers = RawInputSplitByNl.ToArray();
+        var numbers = InputNlSplit.ToArray();
         
         Pair? pair = null;
         foreach (var n in numbers) {

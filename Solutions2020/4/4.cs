@@ -11,7 +11,7 @@ public class Solution4 : SolutionFramework {
         var requiredFields = new[] { "byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid" };
         
         var fields = new Dictionary<string, string>();
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             if (line == String.Empty) {
                 if (fields.Count != 0) {
                     passports.Add(new Passport(fields));

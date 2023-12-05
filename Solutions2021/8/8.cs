@@ -9,7 +9,7 @@ public class Solution8 : SolutionFramework {
 
     public override string[] Solve() {
         var c = 0;
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var split = line.Split('|');
             var outputValueDigits = Regex.Matches(split[1], @"\w+").Select(x=>x.Value).ToList();
             c += outputValueDigits.Count(d => d.Length is 2 or 3 or 4 or 7);
@@ -30,7 +30,7 @@ public class Solution8 : SolutionFramework {
         
         //pt 2
         long sum = 0;
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var signalMapping = new Dictionary<char, char>();
             var split = line.Split('|');
             var signalPatterns = Regex.Matches(split[0], @"\w+").Select(x=>x.Value).ToList();

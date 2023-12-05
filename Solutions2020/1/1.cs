@@ -7,7 +7,7 @@ public class Solution1 : SolutionFramework
     public Solution1() : base(1) { }
 
     public override string[] Solve() {
-        var inputNums = RawInputSplitByNl.Select(int.Parse);
+        var inputNums = InputNlSplit.Select(int.Parse);
         var numsToProcess = inputNums as int[] ?? inputNums.ToArray();
         var answerFound = false;
         foreach (var n in numsToProcess.ToArray()) {
@@ -27,7 +27,7 @@ public class Solution1 : SolutionFramework
         
         //Pt 2
         
-        inputNums = RawInputSplitByNl.Select(int.Parse);
+        inputNums = InputNlSplit.Select(int.Parse);
         numsToProcess = inputNums as int[] ?? inputNums.ToArray();
         answerFound = false;
         foreach (var n in numsToProcess.ToArray()) {

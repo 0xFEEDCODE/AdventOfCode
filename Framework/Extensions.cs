@@ -253,7 +253,9 @@ public static class Extensions
         }
     }
     
-    
+    public static IEnumerable<IEnumerable<T>> Slice<T>(this IEnumerable<T> source, int sliceLen) =>
+        source.Where((_, i) => i % sliceLen == 0).Select((_, i) => source.Skip(i * sliceLen).Take(sliceLen));
+
     //Numeric
     public static IEnumerable<int> GetDigits(this int number)
     {

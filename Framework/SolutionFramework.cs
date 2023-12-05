@@ -10,7 +10,11 @@ public abstract class SolutionFramework
     protected string[] Answers => new[] { Answer1, Answer2 };
     protected string RawInput;
     
-    protected double NumSlot;
+    protected string InpR => RawInput;
+    protected string[] InpNl => InputNlSplit;
+    protected T[][] InpGr<T>() => InputAsGrid<T>();
+    
+    protected double NSlot;
     protected string StrSlot;
     
     [DllImport("user32.dll")]
@@ -38,17 +42,20 @@ public abstract class SolutionFramework
         RawInput = File.ReadAllText($"{challengeNo}/input.txt");
     }
     
-    protected string[] RawInputSplitByNl => RawInput.SplitByNewline();
-    protected int[] IntInputSplitByNl => RawInput.SplitByNewline().Select(int.Parse).ToArray();
-    protected double[] DoubleInputSplitByNl => RawInput.SplitByNewline().Select(double.Parse).ToArray();
-    protected long[] LongInputSplitByNl => RawInput.SplitByNewline().Select(long.Parse).ToArray();
-
-    protected char[][] InputAsGrid()
+    protected string[] InputNlSplit => RawInput.SplitByNewline();
+    protected int[] IntInputSplitNl => RawInput.SplitByNewline().Select(int.Parse).ToArray();
+    protected double[] DoubleInputSplitNl => RawInput.SplitByNewline().Select(double.Parse).ToArray();
+    protected long[] LongInputSplitNl => RawInput.SplitByNewline().Select(long.Parse).ToArray();
+    
+    protected T[][] InputAsGrid<T>()
     {
-        var grid = (RawInputSplitByNl.Length, RawInputSplitByNl[0].Length).CreateGrid<char>();
+        var grid = (InputNlSplit.Length, InputNlSplit[0].Length).CreateGrid<T>();
         grid.ForEachCell((i, j) =>
         {
-            grid[i][j] = RawInputSplitByNl[i][j];
+            if (InputNlSplit[i][j] is T v)
+            {
+                grid[i][j] = v;
+            }
         });
         return grid;
     }
@@ -76,24 +83,24 @@ public abstract class SolutionFramework
 
     protected void AssignAnswer1(bool resetNumSlot = true)
     {
-        AssignAnswer1(NumSlot);
-        NumSlot = resetNumSlot ? 0 : NumSlot;
+        AssignAnswer1(NSlot);
+        NSlot = resetNumSlot ? 0 : NSlot;
     }
     protected void AssignAnswer2(bool resetNumSlot = true)
     {
-        AssignAnswer2(NumSlot);
-        NumSlot = resetNumSlot ? 0 : NumSlot;
+        AssignAnswer2(NSlot);
+        NSlot = resetNumSlot ? 0 : NSlot;
     }
     
     protected void AssignAnswer1<T>(T answer, bool resetNumSlot = true)
     {
         Answer1 = answer.ToString();
-        NumSlot = resetNumSlot ? 0 : NumSlot;
+        NSlot = resetNumSlot ? 0 : NSlot;
     }
     protected void AssignAnswer2<T>(T answer, bool resetNumSlot = true)
     {
         Answer2 = answer.ToString();
-        NumSlot = resetNumSlot ? 0 : NumSlot;
+        NSlot = resetNumSlot ? 0 : NSlot;
     }
 
     public abstract string[] Solve();

@@ -11,7 +11,7 @@ public class Solution1 : SolutionFramework
         double Fn(double x) => Math.Floor(x / 3) - 2;
         
         double sum = 0;
-        foreach (var mass in DoubleInputSplitByNl)
+        foreach (var mass in DoubleInputSplitNl)
         {
             sum += Fn(mass);
         }
@@ -19,7 +19,7 @@ public class Solution1 : SolutionFramework
         AssignAnswer1(sum);
         sum = 0;
 
-        foreach (var mass in DoubleInputSplitByNl)
+        foreach (var mass in DoubleInputSplitNl)
         {
             var temp = mass;
             while ((temp = Fn(temp)) > 0)

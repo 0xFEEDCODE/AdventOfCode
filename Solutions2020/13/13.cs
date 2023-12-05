@@ -8,8 +8,8 @@ public class Solution13 : SolutionFramework
 
     public override string[] Solve()
     {
-        var departEstimate = int.Parse(RawInputSplitByNl.First());
-        var buses = RawInputSplitByNl.Last().Split(',')?.Where(b => b.All(Char.IsDigit)).Select(int.Parse).ToArray();
+        var departEstimate = int.Parse(InputNlSplit.First());
+        var buses = InputNlSplit.Last().Split(',')?.Where(b => b.All(Char.IsDigit)).Select(int.Parse).ToArray();
 
         var departTime = departEstimate;
         int? earliestBus = null;
@@ -28,7 +28,7 @@ public class Solution13 : SolutionFramework
         }
         AssignAnswer1(earliestBus.Value * waitTime!.Value);
 
-        var busesNr = RawInputSplitByNl.Last().Split(',')?.Select(b => b == "x" ? 0 : (uint)(int.Parse(b))).ToArray();
+        var busesNr = InputNlSplit.Last().Split(',')?.Select(b => b == "x" ? 0 : (uint)(int.Parse(b))).ToArray();
         //Found 101498759702480
         //var timestampEstimate = 101338657319961;
         //var timestampEstimate = 101498759702480;

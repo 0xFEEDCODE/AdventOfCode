@@ -7,7 +7,7 @@ public partial class Solution16 {
         var paths = new List<Path>();
         var allPaths = new List<Path>();
         const string pattern = @"Valve (?<x>.+) has flow rate=(?<y>.+); tunnel(?:\w*) lead(?:\w*) to valve(?:\w*) (?<z>.+)";
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var matches = Regex.Match(line, pattern).Groups;
             var name = matches[1].Value.Trim();
             var value = int.Parse(matches[2].Value);

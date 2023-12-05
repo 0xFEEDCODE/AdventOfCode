@@ -4,7 +4,7 @@ public partial class Solution18 {
     
     private List<Cube> ParseInput() {
         var cubes = new List<Cube>();
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var nums = line.Split(',').Select(int.Parse).ToList();
             var c = new Cube(nums[0], nums[1], nums[2], 1, 1);
             cubes.Add(c);

@@ -27,7 +27,7 @@ public class Solution6 : SolutionFramework {
 
     public override string[] Solve() {
         var fishes = new List<LanternFish>();
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             foreach (var n in Regex.Matches(line, @"\d+").Select(x => int.Parse(x.Value))) {
                 fishes.Add(new LanternFish(n));
             }

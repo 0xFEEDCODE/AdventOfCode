@@ -10,7 +10,7 @@ public partial class Solution19 {
         const string patternClay = @".* costs (?<x>.+) ore";
         const string patternObsidian = @".* costs (?<x>.+) ore and (?<y>.+) clay";
         const string patternGeode = @".* costs (?<x>.+) ore and (?<y>.+) obsidian";
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var split = line.Split('.');
             var ore = Regex.Match(split[0], patternOre).Groups;
             var clay = Regex.Match(split[1], patternClay).Groups;

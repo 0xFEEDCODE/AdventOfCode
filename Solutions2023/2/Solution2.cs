@@ -36,7 +36,7 @@ public class Solution2 : SolutionFramework
     private void Part1()
     {
         var i = 1;
-        foreach (var l in RawInputSplitByNl)
+        foreach (var l in InputNlSplit)
         {
             var sets = new List<Set>();
             
@@ -49,19 +49,19 @@ public class Solution2 : SolutionFramework
             }
             if (isPossible(sets))
             {
-                NumSlot += i;
+                NSlot += i;
             }
             
             i++;
         }
         
-        AssignAnswer1(NumSlot);
+        AssignAnswer1(NSlot);
     }
     
     private void Part2()
     {
         var i = 1;
-        foreach (var l in RawInputSplitByNl)
+        foreach (var l in InputNlSplit)
         {
             var sets = new List<Set>();
             
@@ -73,11 +73,11 @@ public class Solution2 : SolutionFramework
                 sets.Add(new Set(color, quantity));
             }
             var f = Fewest(sets);
-            NumSlot += f.Blue * f.Green * f.Red;
+            NSlot += f.Blue * f.Green * f.Red;
             
             i++;
         }
         
-        AssignAnswer2(NumSlot);
+        AssignAnswer2(NSlot);
     }
 }

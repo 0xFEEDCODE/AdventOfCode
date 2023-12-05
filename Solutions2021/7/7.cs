@@ -6,7 +6,7 @@ public class Solution7 : SolutionFramework {
     public Solution7() : base(7) { }
 
     public override string[] Solve() {
-        var positions = RawInputSplitByNl.Single().Split(',').Select(long.Parse).ToList();
+        var positions = InputNlSplit.Single().Split(',').Select(long.Parse).ToList();
 
         long smallestFuelCost = int.MaxValue;
         foreach (var pos in positions) {

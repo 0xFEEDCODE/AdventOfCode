@@ -118,7 +118,7 @@ public class Solution7 : SolutionFramework
                     pointer += 4;
                     break;
                 case OpCode.Out:
-                    NumSlot = m1 is Mode.Position ? memory[p1] : p1;
+                    NSlot = m1 is Mode.Position ? memory[p1] : p1;
                     var outp = m1 is Mode.Position ? memory[p1] : p1;
                     pointer += 2;
                     return (outp, pointer, memory.ToArray());

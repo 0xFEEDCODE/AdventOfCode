@@ -49,7 +49,7 @@ public class Solution17 : SolutionFramework {
     };
 
     public override string[] Solve() {
-        var values = Regex.Matches(RawInputSplitByNl.First(), @"-?\d+").Select(x=>int.Parse(x.Value)).ToArray();
+        var values = Regex.Matches(InputNlSplit.First(), @"-?\d+").Select(x=>int.Parse(x.Value)).ToArray();
         var targetXStart = values[0]; var targetXEnd = values[1]; var targetYStart = values[2]; var targetYEnd = values[3];
         var targetArea = new List<Position>();
 

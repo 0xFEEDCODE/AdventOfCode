@@ -9,7 +9,7 @@ public class Solution1 : SolutionFramework
     public override string[] Solve() {
         int? previousN = null;
         var biggerCount = 0;
-        foreach (var item in RawInputSplitByNl) {
+        foreach (var item in InputNlSplit) {
             var n = int.Parse(item);
             if (n > previousN)
                 biggerCount++;
@@ -20,7 +20,7 @@ public class Solution1 : SolutionFramework
         // pt 2
         var window = new Queue<int>();
         biggerCount = 0;
-        foreach (var item in RawInputSplitByNl) {
+        foreach (var item in InputNlSplit) {
             var n = int.Parse(item);
             window.Enqueue(n);
             if (window.Count() == 4) {

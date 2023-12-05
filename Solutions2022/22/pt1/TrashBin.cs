@@ -17,7 +17,7 @@ public partial class Solution22 {
         var instructionsPart = false;
         var numSb = new StringBuilder();
         var i = 1;
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             if (!instructionsPart && (line.Contains('.') || line.Contains("#"))) {
                 var j = 1;
                 foreach (var ch in line) {

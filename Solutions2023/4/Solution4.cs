@@ -13,7 +13,7 @@ public class Solution4 : SolutionFramework
         
         var processedCards = new Dictionary<int, int>();
         
-        foreach (var s in RawInputSplitByNl)
+        foreach (var s in InputNlSplit)
         {
             var s1 = s.Split(':');
             var cardN = s1.First().Split(' ').Last().ParseInt();

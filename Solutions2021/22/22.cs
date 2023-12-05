@@ -46,7 +46,7 @@ public class Solution22 : SolutionFramework {
 
     public override string[] Solve() {
         var rebootInstructions = new Queue<OnOffInstruction>();
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var matches = Regex.Matches(line, @"-?\d+").Select(x => int.Parse(x.Value)).ToArray();
             var onOff = line.Contains("on");
             rebootInstructions.Enqueue(new OnOffInstruction(onOff, new Region(new Vector3(matches[0], matches[2], matches[4]), new Vector3(matches[1], matches[3], matches[5]), onOff)));

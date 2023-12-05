@@ -13,7 +13,7 @@ public class Solution3 : SolutionFramework {
         var bitsByCol = new Dictionary<int, List<Bit>>();
         var bitsByRow = new Dictionary<int, string>();
         var row = 0;
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             for (var i = 0; i < line.Length; i++) {
                 if (!bitsByCol.ContainsKey(i)) {
                     bitsByCol.Add(i, new List<Bit>());

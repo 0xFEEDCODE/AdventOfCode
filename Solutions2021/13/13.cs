@@ -13,7 +13,7 @@ public class Solution13 : SolutionFramework {
     public override string[] Solve() {
         var coords = new List<Coord>();
         var folds = new List<FoldInstr>();
-        foreach (var line in RawInputSplitByNl) {
+        foreach (var line in InputNlSplit) {
             var matches = Regex.Matches(line, @"\d+");
             if (!matches.Any()) {
                 continue;

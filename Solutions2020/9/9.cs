@@ -18,7 +18,7 @@ public class Solution9 : SolutionFramework
     {
         var nums = new List<long>();
 
-        foreach (var line in RawInputSplitByNl)
+        foreach (var line in InputNlSplit)
         {
             nums.Add(long.Parse(line));
         }

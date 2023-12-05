@@ -10,8 +10,8 @@ public class Solution14 : SolutionFramework {
     public record struct Rule(string Pair, string Insert);
     public override string[] Solve() {
         var rules = new Dictionary<string, string>();
-        var template = RawInputSplitByNl.First();
-        foreach (var line in RawInputSplitByNl.Skip(1)) {
+        var template = InputNlSplit.First();
+        foreach (var line in InputNlSplit.Skip(1)) {
             if (line.Contains("->")) {
                 var split = line.Split("->").Select(x=>x.Trim()).ToArray();
                 rules.Add(split[0], split[0][0]+split[1]);

@@ -113,9 +113,9 @@ public class Solution17 : SolutionFramework
     private int Pt1()
     {
         var cubes =
-            (from x in Enumerable.Range(0, RawInputSplitByNl.Length)
-                from y in Enumerable.Range(0, RawInputSplitByNl[x].Length)
-                select new Cube(RawInputSplitByNl[x][y] is '#', new Pos3D(x, y, 0))).ToHashSet();
+            (from x in Enumerable.Range(0, InputNlSplit.Length)
+                from y in Enumerable.Range(0, InputNlSplit[x].Length)
+                select new Cube(InputNlSplit[x][y] is '#', new Pos3D(x, y, 0))).ToHashSet();
 
         var area = new Area3D(
             new Range(cubes.Min(c => c.Pos.X) - 1, cubes.Max(c => c.Pos.X) + 1),
@@ -186,9 +186,9 @@ public class Solution17 : SolutionFramework
     
     private int Pt2()
     {
-        var cubes = (from x in Enumerable.Range(0, RawInputSplitByNl.Length)
-                from y in Enumerable.Range(0, RawInputSplitByNl[x].Length)
-                select new HyperCube(RawInputSplitByNl[x][y] is '#', new Pos4D(x, y, 0, 0))).ToHashSet();
+        var cubes = (from x in Enumerable.Range(0, InputNlSplit.Length)
+                from y in Enumerable.Range(0, InputNlSplit[x].Length)
+                select new HyperCube(InputNlSplit[x][y] is '#', new Pos4D(x, y, 0, 0))).ToHashSet();
         
         foreach (var cube in cubes.ToArray())
         {

@@ -8,7 +8,7 @@ public class Solution3 : SolutionFramework
 
     public override string[] Solve()
     {
-        var grid = InputAsGrid();
+        var grid = InputAsGrid<char>();
         var numWithPositions = new List<(int, List<Pos2D>)>();
         
         var n = string.Empty;
@@ -43,7 +43,7 @@ public class Solution3 : SolutionFramework
             {
                 if (grid.IsAnyNeighbor(pos, IsSymbol))
                 {
-                    NumSlot+=num;
+                    NSlot+=num;
                     break;
                 }
             }
@@ -63,7 +63,7 @@ public class Solution3 : SolutionFramework
                 var found = numWithPositions.Where(np => adjacent.Any(vk => np.Item2.Contains(vk.pos)));
                 if (found.Count() == 2)
                 {
-                    NumSlot += found.First().Item1 * found.Last().Item1;
+                    NSlot += found.First().Item1 * found.Last().Item1;
                 }
             }
         });
