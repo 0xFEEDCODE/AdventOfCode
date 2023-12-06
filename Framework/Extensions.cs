@@ -22,6 +22,18 @@ public static class Extensions
         grid.InitRows(W);
         return grid;
     }
+    
+    public static void PrintGrid<T>(this T[][] grid)
+    {
+        for (var i = 0; i < grid.Length; i++)
+        {
+            for (var j = 0; j < grid[i].Length; j++)
+            {
+                Console.Write(grid[i][j]);
+            }
+            Console.WriteLine();
+        }
+    }
 
     public static void AssignIfBigger(this ref long n1, long n2) => n1 = n2 > n1 ? n2 : n1;
     public static void AssignIfBigger(this ref int n1, int n2) => n1 = n2 > n1 ? n2 : n1;
@@ -36,6 +48,9 @@ public static class Extensions
     public static T NeighborCellLeft<T>(this T[][] grid, Pos2D pos) => grid[pos.X][pos.Y - 1];
     public static T NeighborCellRight<T>(this T[][] grid, Pos2D pos) => grid[pos.X][pos.Y + 1];
     public static T NeighborCellDown<T>(this T[][] grid, Pos2D pos) => grid[pos.X + 1][pos.Y];
+    public static T TryGetNeighborCellLeft<T>(this T[][] grid, int i, int j) => grid[i][j - 1];
+    public static T TryGetNeighborCellRight<T>(this T[][] grid, int i, int j) => grid[i][j + 1];
+    public static T TryGetNeighborCellDown<T>(this T[][] grid, int i, int j) => grid[i + 1][j];
 
     //Clockwise diagonals
     public static T NeighborCellTopLeft<T>(this T[][] grid, int i, int j) => grid[i - 1][j - 1];

@@ -11,6 +11,7 @@
         new Challenges2019.Solution7().Solve,
         new Challenges2019.Solution8().Solve,
         new Challenges2019.Solution9().Solve,
+        new Challenges2019.Solution10().Solve,
     };
 
     for (int i = 0; i < challenges.Count; i++)
