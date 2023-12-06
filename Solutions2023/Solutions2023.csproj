@@ -28,6 +28,9 @@
         <None Update="5\input.txt">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="6\input.txt">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <!--INSERTION POINT MARKER (Used with script)-->
     </ItemGroup>
 
