@@ -6,9 +6,7 @@ public class Solution10 : SolutionFramework
 {
     public Solution10() : base(10) { }
 
-
     private enum Field { Empty, Asteroid }
-    private enum Direction { Up, Down, Left, Right }
     
     public override string[] Solve()
     {
@@ -33,7 +31,6 @@ public class Solution10 : SolutionFramework
         foreach (var p1 in asteroids)
         {
             var angles = new List<double>();
-            var sameLines = new List<Direction>();
 
             scores.Add(p1, 0);
             foreach (var p2 in asteroids)
@@ -44,7 +41,6 @@ public class Solution10 : SolutionFramework
                 }
                 
                 var angle = Math.Atan2(p1.X - p2.X, p1.Y - p2.Y);
-                //var m = dy / dx;
                 if (!angles.Contains(angle))
                 {
                     angles.Add(angle);
