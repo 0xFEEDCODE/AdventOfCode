@@ -25,6 +25,6 @@ public class Solution6 : SolutionFramework
     double GetNWays(double times, double distances) => GetNWays(new[] { times }, new[] { distances });
     double GetNWays(double[] times, double[] distances) =>
         times.Zip(distances).Select(r =>
-        { var count = 0; for (double i = 0; i < r.First; i++) { if (CalcDistanceTraveled(i, i, r.First) > r.Second) { count++; } }return count; })
+        { var count = 0; for (double i = 0; i < r.First; i++) { if (CalcDistanceTraveled(i, i, r.First) > r.Second) { count++; } } return count; })
             .Aggregate((acc, x) => acc * x);
 }

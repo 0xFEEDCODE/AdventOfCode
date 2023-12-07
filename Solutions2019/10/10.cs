@@ -1,57 +1,63 @@
 using Framework;
 
-
 namespace Challenges2019;
 
 public class Solution10 : SolutionFramework
 {
     public Solution10() : base(10) { }
-    
-    enum Field { Empty, Asteroid }
 
+
+    private enum Field { Empty, Asteroid }
+    private enum Direction { Up, Down, Left, Right }
+    
     public override string[] Solve()
     {
         var temp = InpGr<char>();
 
         var gr = (temp.Length, temp[0].Length).CreateGrid<Field>();
+        var asteroids = new List<Pos2D>();
 
         for (var i = 0; i < temp.Length; i++)
         {
             for (var j = 0; j < temp[i].Length; j++)
             {
                 gr[i][j] = temp[i][j] == '#' ? Field.Asteroid : Field.Empty;
-            }
-        }
-
-        var score = new List<(Pos2D pos, int score)>();
-
-        for (var i = 0; i < gr.Length; i++)
-        {
-            for (var j = 0; j < gr[0].Length; j++)
-            {
-                var pos = new Pos2D(i, j);
-                if (gr.GetCell(pos) is Field.Asteroid)
+                if (gr[i][j] == Field.Asteroid)
                 {
-                    
-                    
+                    asteroids.Add(new Pos2D(j, i));
                 }
             }
         }
 
-
-        void Find(Pos2D pos)
+        var scores = new Dictionary<Pos2D, double>();
+        foreach (var p1 in asteroids)
         {
-            var adjacents = gr.GetAllAdjacentCells(pos, true);
-            foreach (var adj in adjacents)
+            var angles = new List<double>();
+            var sameLines = new List<Direction>();
+
+            scores.Add(p1, 0);
+            foreach (var p2 in asteroids)
             {
-                Find(adj.pos);
+                if (p1 == p2)
+                {
+                    continue;
+                }
+                
+                var angle = Math.Atan2(p1.X - p2.X, p1.Y - p2.Y);
+                //var m = dy / dx;
+                if (!angles.Contains(angle))
+                {
+                    angles.Add(angle);
+                    scores[p1]++;
+                }
             }
-            
         }
-        
-        
+
+        AssignAnswer1(scores.MaxBy(x => x.Value).Value);
+
+        Console.WriteLine();
+
         return Answers;
     }
     
 }
-
