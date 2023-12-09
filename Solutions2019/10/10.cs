@@ -28,30 +28,46 @@ public class Solution10 : SolutionFramework
         }
 
         var scores = new Dictionary<Pos2D, double>();
+        var angles = new Dictionary<Pos2D, List<(Pos2D Pos, double AngleDegree)>>();
+
         foreach (var p1 in asteroids)
         {
-            var angles = new List<double>();
-
-            scores.Add(p1, 0);
             foreach (var p2 in asteroids)
             {
-                if (p1 == p2)
-                {
-                    continue;
-                }
-                
+                if (p1 == p2) { continue; }
+
+                scores.TryAdd(p1, 0);
+                angles.TryAdd(p1, new List<(Pos2D Pos, double AngleDegree)>(0));
+
                 var angle = Math.Atan2(p1.X - p2.X, p1.Y - p2.Y);
-                if (!angles.Contains(angle))
+                var angleDegree = angle > 0 ? angle : (2 * Math.PI + angle) *360 / (2 * Math.PI);
+
+                if (!angles[p1].Any(p => p.AngleDegree == angleDegree))
                 {
-                    angles.Add(angle);
+                    angles[p1].Add((p2, angleDegree));
                     scores[p1]++;
                 }
             }
         }
 
-        AssignAnswer1(scores.MaxBy(x => x.Value).Value);
+        var bestPlacement = scores.MaxBy(x => x.Value);
+        AssignAnswer1(bestPlacement.Value);
 
-        Console.WriteLine();
+        var a = angles[bestPlacement.Key];
+
+        var c = 1;
+        foreach (var angle in a.OrderByDescending(x => x.AngleDegree))
+        {
+            if (c == 200)
+            {
+                NSlot = angle.Pos.X * 100 + angle.Pos.Y;
+                break;
+            }
+            
+            c++;
+        }
+        
+        AssignAnswer2();
 
         return Answers;
     }

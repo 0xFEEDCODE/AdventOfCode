@@ -3,7 +3,7 @@
     var challenges = new List<Func<string[]>>
     {
         new Challenges2019.Solution1().Solve,
-         new Challenges2019.Solution2().Solve,
+        new Challenges2019.Solution2().Solve,
         new Challenges2019.Solution3().Solve,
         new Challenges2019.Solution4().Solve,
         new Challenges2019.Solution5().Solve,
@@ -12,6 +12,7 @@
         new Challenges2019.Solution8().Solve,
         new Challenges2019.Solution9().Solve,
         new Challenges2019.Solution10().Solve,
+        new Challenges2019.Solution11().Solve,
     };
 
     for (int i = 0; i < challenges.Count; i++)

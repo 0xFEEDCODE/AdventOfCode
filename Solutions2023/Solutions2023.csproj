@@ -2,9 +2,10 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <TargetFrameworks>net8.0;net7.0</TargetFrameworks>
+        <LangVersion>latestmajor</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -37,7 +38,15 @@
         <None Update="8\input.txt">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="9\input.txt">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <!--INSERTION POINT MARKER (Used with script)-->
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <PackageReference Include="BenchmarkDotNet" Version="0.13.11" />
     </ItemGroup>
 
 </Project>

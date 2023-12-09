@@ -1,5 +1,3 @@
-using System.Diagnostics.Contracts;
-
 using Framework;
 
 using static Challenges2019.OpCode;

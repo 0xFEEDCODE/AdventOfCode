@@ -25,11 +25,11 @@ public static class Extensions
     
     public static void PrintGrid<T>(this T[][] grid)
     {
-        for (var i = 0; i < grid.Length; i++)
+        foreach (var row in grid)
         {
-            for (var j = 0; j < grid[i].Length; j++)
+            foreach (var col in row)
             {
-                Console.Write(grid[i][j]);
+                Console.Write(col);
             }
             Console.WriteLine();
         }
@@ -215,6 +215,18 @@ public static class Extensions
 
     //ICollection
     public static bool HasNumberOfDistinct<T>(this ICollection<T> collection, int number) => collection.Distinct().Count() == number;
+
+    public static void ForEveryOtherItemInCollection<T>(this ICollection<T> collection, Action<T, T> action)
+    {
+        foreach (var i1 in collection)
+        {
+            foreach (var i2 in collection.Where(item => !Equals(item, i1)))
+            {
+                
+                action.Invoke(i1, i2);
+            }
+        }
+    }
     
     //Array
     public static int? FindIndexOfItem(this string[] arr, string item) => Array.FindIndex(arr, i => i == item);
