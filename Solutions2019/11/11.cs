@@ -25,19 +25,18 @@ public static class Ext
                 Direction.L => Direction.D,
                 Direction.D => Direction.R,
                 Direction.R => Direction.U,
-                Direction.U => Direction.L
+                Direction.U => Direction.L,
+                _ => throw new ArgumentOutOfRangeException(nameof(d), d, null)
             };
         }
-        else
+        return d switch
         {
-            return d switch
-            {
-                Direction.L => Direction.U,
-                Direction.D => Direction.L,
-                Direction.R => Direction.D,
-                Direction.U => Direction.R
-            };
-        }
+            Direction.L => Direction.U,
+            Direction.D => Direction.L,
+            Direction.R => Direction.D,
+            Direction.U => Direction.R,
+            _ => throw new ArgumentOutOfRangeException(nameof(d), d, null)
+        };
     }
 }
 
@@ -46,8 +45,6 @@ public class Solution11 : SolutionFramework
     public Solution11() : base(11) { }
 
     record Field(Pos2D Pos, Color Color);
-
-    public double input;
 
     public override string[] Solve()
     {
@@ -58,122 +55,100 @@ public class Solution11 : SolutionFramework
             memory[i] = progInstr[i];
         }
         
-        var hull = (150, 300).CreateGrid<Color>();
-        hull.ForEachCell((x,y) =>
-        {
-            hull[x][y] = Color.Black;
-        });
-        var offs = 20;
-        
         var painted = new List<Field>();
         
-        var startPos = new Field(new Pos2D(offs, offs), Color.White);
-
+        var startPos = new Field(new Pos2D(0, 0), Color.White);
         (Field field, Direction dir) robot = (startPos, Direction.U);
+        
+        var pointer = 0;
+        var relBase = 0d;
+        while (true)
+        {
+            var program = ExecuteProgram(pointer, memory, relBase, robot.field.Color.ToInt());
+            
+            pointer = program.pointer;
+            memory = program.memory;
+            relBase = program.relBase;
 
-        input = robot.field.Color.ToInt();
+            var color = program.output.First().ToColor();
+
+            var turn = program.output.Last() == 0 ? Direction.L : Direction.R;
+            
+            robot = Paint(robot, color, painted);
+            robot = TurnAndAdvance(turn, robot, painted);
+            
+            if (program.halt)
+            {
+                break;
+            }
+        }
+        if (painted.Contains(robot.field))
+        {
+            throw new InvalidOperationException();
+        }
         painted.Add(robot.field);
 
-        hull[offs][offs] = Color.White;
-        
-        Console.SetCursorPosition(0,0);
-        Console.SetWindowSize(200, 300);
-        var prog = ExecuteProgram(0, memory, input);
-        var maxX = 0;
-        var maxY = 0;
-        var minY = 0;
-        var minX = 0;
-        while (prog.output.Any())
-        {
-            if (prog.output.Count() != 2)
-            {
-                throw new InvalidOperationException();
-            }
-            var paintColor = prog.output.First().ToColor();
-            painted.Add(robot.field with { Color = paintColor });
-            hull[robot.field.Pos.X][robot.field.Pos.Y] = paintColor;
-            
-            /*
-            Console.SetCursorPosition(robot.field.Pos.X, robot.field.Pos.Y);
-            Console.ForegroundColor = paintColor is Color.White ? ConsoleColor.Red : ConsoleColor.Black;
-            Console.Write("\u2588");
-            */
-            
-            var turn = prog.output.Last() == 0 ? Direction.L : Direction.R;
-
-            var newDir = robot.dir.Turn(turn == Direction.L);
-
-            var pos = robot.field.Pos;
-            var newPos = newDir switch
-            {
-                Direction.L => pos with { X = pos.X - 1 },
-                Direction.R => pos with { X = pos.X + 1 },
-                Direction.U => pos with { Y = pos.Y - 1 },
-                Direction.D => pos with { Y = pos.Y + 1 }
-            };
-
-            var newField = new Field(newPos, hull[newPos.X][newPos.Y]);
-
-            /*
-            var paintHistory = painted.Where(p => p.Pos == newPos);
-            var lastPaint = paintHistory.LastOrDefault();
-            if (lastPaint != null)
-            {
-                newField = newField with{ Color = lastPaint.Color };
-            }
-            */
-            
-            robot = robot with { field = newField, dir = newDir };
-
-            maxX.AssignIfBigger(robot.field.Pos.X);
-            maxY.AssignIfBigger(robot.field.Pos.Y);
-            minY.AssignIfLower(robot.field.Pos.Y);
-            minX.AssignIfLower(robot.field.Pos.X);
-            
-            input = robot.field.Color.ToInt();
-            prog = ExecuteProgram(prog.pointer, prog.memory, input);
-        }
-        Console.SetCursorPosition(0,0);
-
         var paintedOnce = painted.DistinctBy(x => x.Pos);
-        AssignAnswer1(paintedOnce.Count());
+        var bl = paintedOnce.Count(x => x.Color is Color.Black);
+        var wh = paintedOnce.Count(x => x.Color is Color.White);
+        Console.WriteLine((bl, wh));
+        Console.WriteLine(bl+wh);
+        Console.WriteLine(painted.Count());
 
-        
-        Console.SetCursorPosition(0,0);
-        for (var i = offs+minY; i < maxY; i++)
+        for (var j = painted.MinBy(x=>x.Pos.Y)!.Pos.Y; j <= painted.MaxBy(x=>x.Pos.Y)!.Pos.Y; j++)
         {
-            for (var j = offs+minX; j < maxX; j++)
+            for (var i = painted.MinBy(x=>x.Pos.X)!.Pos.X; i <= painted.MaxBy(x=>x.Pos.X)!.Pos.X; i++)
             {
-                if (hull[i][j] is Color.White)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("\u2588");
-                }
-                else 
-                {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.Write("\u2588");
-                }
+                    Console.Write(painted.Any(p => p.Color is Color.White && p.Pos.X == i && p.Pos.Y == j) ? "#" : " ");
             }
         }
-        
-        //gr.PrintGrid();
-        
         return Answers;
     }
-    
-    private (int pointer, Dictionary<double, double> memory, IEnumerable<double> output) ExecuteProgram(int pointer, Dictionary<double, double> memory, double input)
+    private static (Field field, Direction dir) Paint((Field field, Direction dir) robot, Color color, List<Field> painted)
     {
-        var relBase = 0d;
+        robot = robot with { field =  robot.field with{Color = color} };
+        painted.Add(robot.field);
+        return robot;
+    }
+
+    private static (Field field, Direction dir) TurnAndAdvance(Direction dir, (Field field, Direction dir) robot, List<Field> painted)
+    {
+        var newDir = robot.dir.Turn(dir == Direction.L);
+
+        var pos = robot.field.Pos;
+        var newPos = newDir switch
+        {
+            Direction.L => pos with { X = pos.X - 1 },
+            Direction.R => pos with { X = pos.X + 1 },
+            Direction.U => pos with { X = pos.Y - 1 },
+            Direction.D => pos with { X = pos.Y + 1 },
+            _ => throw new ArgumentOutOfRangeException()
+        };
+
+        var newField = new Field(newPos, Color.Black);
+        
+        var paintHistory = painted.Where(p => p.Pos == newPos);
+        var lastPaint = paintHistory.SingleOrDefault();
+        if (lastPaint != null)
+        {
+            newField = newField with{ Color = lastPaint.Color };
+            painted.Remove(lastPaint);
+        }
+            
+        return (newField, newDir);
+    }
+
+    private (int pointer, Dictionary<double, double> memory, IEnumerable<double> output, double relBase, bool halt) ExecuteProgram(int pointer, Dictionary<double, double> memory, double relBase, double input)
+    {
         var inputRequested = false;
-        var outp = new List<double>();
+        var output = new List<double>();
         while (true)
         {
             var instr = memory[pointer];
             var opCode = instr is 99 ? Halt : (OpCode)(instr % 10);
             if (opCode is Halt)
             {
-                return (pointer, memory, outp);
+                return (pointer, memory, output, relBase, true);
             }
 
             double p1 = 0, p2 = 0, p3 = 0;
@@ -215,13 +190,13 @@ public class Solution11 : SolutionFramework
                     pointer += 4;
                     break;
                 case Out:
-                    outp.Add(n1);
+                    output.Add(n1);
                     pointer += 2;
                     break;
                 case In:
                     if (inputRequested)
                     {
-                        return (pointer, memory, outp);
+                        return (pointer, memory, output, relBase, false);
                     }
                     if (input is -1)
                     {
@@ -239,6 +214,5 @@ public class Solution11 : SolutionFramework
                     throw new InvalidOperationException();
             }
         }
-        throw new InvalidOperationException();
     }
 }
