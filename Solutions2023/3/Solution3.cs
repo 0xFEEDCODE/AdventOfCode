@@ -9,10 +9,10 @@ public class Solution3 : SolutionFramework
     public override string[] Solve()
     {
         var grid = InputAsGrid<char>();
-        var numWithPositions = new List<(int, List<Pos2D>)>();
+        var numWithPositions = new List<(int, List<GridPos>)>();
         
         var n = string.Empty;
-        var nP = new List<Pos2D>();
+        var nP = new List<GridPos>();
         var parsingN = false;
         grid.ForEachCell(pos =>
         {
@@ -27,7 +27,7 @@ public class Solution3 : SolutionFramework
                 if (parsingN)
                 {
                     numWithPositions.Add((n.ParseInt(), nP));
-                    nP = new List<Pos2D>();
+                    nP = new List<GridPos>();
                     n = string.Empty;
                 }
                 parsingN = false;
@@ -52,7 +52,7 @@ public class Solution3 : SolutionFramework
         AssignAnswer1();
         
         n = string.Empty;
-        nP = new List<Pos2D>();
+        nP = new List<GridPos>();
         parsingN = false;
         grid.ForEachCell(pos =>
         {

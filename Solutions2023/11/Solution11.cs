@@ -9,9 +9,9 @@ public class Solution11 : SolutionFramework
 {
     public Solution11() : base(11) { }
 
-    class Field(Pos2D Pos)
+    class Field(GridPos Pos)
     {
-        public Pos2D Pos = Pos;
+        public GridPos Pos = Pos;
         public int? GalaxyN;
     }
 
@@ -32,7 +32,7 @@ public class Solution11 : SolutionFramework
         {
             for (var j = 0; j < g[0].Length; j++)
             {
-                var pos = new Pos2D(j, i);
+                var pos = new GridPos(j, i);
                 var entry = new Field(pos);
                 
                 ag.SetCell(pos, 1);
@@ -61,7 +61,7 @@ public class Solution11 : SolutionFramework
             {
                 for (var j = 0; j < g[0].Length; j++)
                 {
-                    var pos = new Pos2D(j, i);
+                    var pos = new GridPos(j, i);
                     ag.SetCell(pos, 1000000);
                 }
             }
@@ -80,7 +80,7 @@ public class Solution11 : SolutionFramework
             {
                 for (var i = 0; i < g.Length; i++)
                 {
-                    var pos = new Pos2D(j, i);
+                    var pos = new GridPos(j, i);
                     ag.SetCell(pos, 1000000);
                 }
             }
@@ -122,7 +122,7 @@ public class Solution11 : SolutionFramework
                     {
                         continue;
                     }
-                    var path = AStar(GetCopyOfGrid(ag), (galaxy.Pos.Y, galaxy.Pos.X), (otherG.Pos.Y, otherG.Pos.X));
+                    var path = AStar(GetCopyOfGrid(ag), (galaxy.Pos.R, galaxy.Pos.C), (otherG.Pos.R, otherG.Pos.C));
                     lock (l)
                     {
                         if (distances.TryAdd((galaxy.GalaxyN.Value, otherG.GalaxyN.Value), path.Sum(x=>x.Item2)-1))

@@ -14,10 +14,10 @@ void RunChallengeSolutions(bool onlyRunLastChallenge)
         new Solutions2023.Solution9().Solve,
         new Solutions2023.Solution8().Solve,
         new Solutions2023.Solution10().Solve,
+        /*
         new Solutions2023.Solution11().Solve,
         new Solutions2023.Solution12().Solve,
         new Solutions2023.Solution13().Solve,
-        /*
         new Solutions2023.Solution14().Solve,
         new Solutions2023.Solution15().Solve,
         new Solutions2023.Solution16().Solve,
