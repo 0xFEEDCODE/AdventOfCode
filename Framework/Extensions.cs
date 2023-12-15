@@ -176,6 +176,34 @@ public static class Extensions
             }
         }
     }
+    
+    public static IEnumerable<(GridPos Pos, T Value)> AllCellsWhere<T>(this T[][] grid, Func<T, bool> rule)
+    {
+        for (var i = 0; i < grid.Length; i++)
+        {
+            for (var j = 0; j < grid[i].Length; j++)
+            {
+                if (rule.Invoke(grid[i][j]))
+                {
+                    yield return (new GridPos(i,j), grid[i][j]);
+                }
+            }
+        }
+    }
+    
+    public static T[] Flatten<T>(this T[][] grid) => grid.SelectMany(r => r).ToArray();
+    
+    public static T[][] Transpose<T>(this T[][] source)
+    {
+        var transposed = new List<T[]>();
+        var enumerators = source.Select(x => x.GetEnumerator()).ToArray();
+        while (enumerators.All(x => x.MoveNext()))
+        {
+            transposed.Add(enumerators.Select(x => (T)x.Current).ToArray());
+        }
+        return transposed.ToArray();
+    }
+
 
     // String
     public static string[] SplitByNewline(this string text)
@@ -301,7 +329,16 @@ public static class Extensions
     
     public static IEnumerable<IEnumerable<T>> Slice<T>(this IEnumerable<T> source, int sliceLen) =>
         source.Where((_, i) => i % sliceLen == 0).Select((_, i) => source.Skip(i * sliceLen).Take(sliceLen));
-
+    
+    public static IEnumerable<IEnumerable<T>> Transpose<T>(this IEnumerable<IEnumerable<T>> source)
+    {
+        var enumerators = source.Select(x => x.GetEnumerator()).ToArray();
+        while (enumerators.All(x => x.MoveNext()))
+        {
+            yield return (enumerators.Select(x => x.Current).ToArray());
+        }
+    }
+    
     //Numeric
     public static IEnumerable<int> GetDigits(this int number)
     {

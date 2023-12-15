@@ -27,8 +27,11 @@ public class Solution10() : SolutionFramework(10)
          var st = new Stack<GridPos>();
          var loop = new Dictionary<GridPos, int>();
          var seen = new Dictionary<GridPos, int>();
-         
+
+         var possibleStarts = new[]{ '|', '-', 'L', '7', 'J', 'F' };
          st.Push(startPos);
+         seen.Add(startPos, 0);
+         
          
          while (st.Any())
          {
@@ -40,19 +43,40 @@ public class Solution10() : SolutionFramework(10)
              
              if (gr.TryGetNeighborCellRight(pos, out var r) && "S-LF".Contains(ch) && "-7J".Contains(r))
              {
-                 toAdd.Add(pos with{ C = pos.C + 1});
+                 toAdd.Add(new GridPos(pos.R, pos.C + 1));
+                 if (IsStart(ch))
+                 {
+                     possibleStarts = possibleStarts.Intersect(new[] { '-', 'L', 'F' }).ToArray();
+                 }
              }
              if (gr.TryGetNeighborCellLeft(pos, out var l) && "S-7J".Contains(ch) && "-LF".Contains(l))
              {
-                 toAdd.Add(pos with{ C = pos.C - 1});
+                 toAdd.Add(new GridPos(pos.R, pos.C - 1));
+                 if (IsStart(ch))
+                 {
+                     possibleStarts = possibleStarts.Intersect(new[] { '-', '7', 'J' }).ToArray();
+                 }
              }
              if (gr.TryGetNeighborCellDown(pos, out var d) && "S|F7".Contains(ch) && "|JL".Contains(d))
              {
-                 toAdd.Add(pos with { R = pos.R + 1});
+                 toAdd.Add(new GridPos(pos.R + 1, pos.C));
+                 if (IsStart(ch))
+                 {
+                     possibleStarts = possibleStarts.Intersect(new[] { '|', 'F', '7' }).ToArray();
+                 }
              }
              if (gr.TryGetNeighborCellUp(pos, out var u) && "S|JL".Contains(ch) && "|F7".Contains(u))
              {
-                 toAdd.Add(pos with { R = pos.R - 1});
+                 toAdd.Add(new GridPos(pos.R - 1, pos.C));
+                 if (IsStart(ch))
+                 {
+                     possibleStarts = possibleStarts.Intersect(new[] { '|', 'J', 'L' }).ToArray();
+                 }
+             }
+
+             if (IsStart(ch))
+             {
+                 gr.SetCell(startPos, possibleStarts.Single());
              }
              
              foreach (var p in toAdd.Where(p => !seen.ContainsKey(p)))
@@ -63,8 +87,6 @@ public class Solution10() : SolutionFramework(10)
          }
          
          AssignAnswer1(loop.Count/2);
-         
-         gr.SetCell(startPos, '|');
          
          var inner = 0;
          
@@ -112,5 +134,6 @@ public class Solution10() : SolutionFramework(10)
          AssignAnswer2(inner);
          
          return Answers;
+         bool IsStart(char ch) => ch is 'S';
     }
 }

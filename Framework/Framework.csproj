@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <AssemblyName>Framewor</AssemblyName>
         <RootNamespace>Framework</RootNamespace>
+        <LangVersion>latestmajor</LangVersion>
     </PropertyGroup>
 
 </Project>
