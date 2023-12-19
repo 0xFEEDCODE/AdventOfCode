@@ -155,7 +155,8 @@ public class Solution11 : SolutionFramework
         public Node? Parent;
     }
     
-    public static List<((int, int), int)>? AStar(int[][] grid, (int, int) startCoords, (int, int) endCoords) {
+    public static List<((int, int), int)>? AStar(int[][] grid, (int, int) startCoords, (int, int) endCoords) 
+    {
         if (grid.Length == 0)
             throw new InvalidOperationException();
 
