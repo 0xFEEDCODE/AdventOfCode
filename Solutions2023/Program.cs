@@ -21,7 +21,14 @@ void RunChallengeSolutions(bool onlyRunLastChallenge)
         new Solutions2023.Solution15().Solve,
         new Solutions2023.Solution16().Solve,
         new Solutions2023.Solution17().Solve,
-        new Solutions2023.Solution18().Solve,
+        new Solutions2023.Solution18Alt().Solve,
+        new Solutions2023.Solution19().Solve,
+        new Solutions2023.Solution20().Solve,
+        new Solutions2023.Solution21().Solve,
+        new Solutions2023.Solution22().Solve,
+        new Solutions2023.Solution23().Solve,
+        new Solutions2023.Solution24().Solve,
+        new Solutions2023.Solution25().Solve,
         // INSERTION POINT MARKER (Used with script)
     };
 

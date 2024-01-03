@@ -2,7 +2,7 @@ using Framework;
 
 namespace Solutions2023;
 
-public class Solution17O() : SolutionFramework(17)
+public class Solution17Alt() : SolutionFramework(17)
 {
     public override string[] Solve()
     {

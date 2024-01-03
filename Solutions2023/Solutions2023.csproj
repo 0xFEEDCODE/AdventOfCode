@@ -68,6 +68,28 @@
         <None Update="18\input.txt">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Update="19\input.txt">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="20\input.txt">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="21\input.txt">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="22\input.txt">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="23\input.txt">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Include="23\Solution23.cs" />
+        <None Update="24\input.txt">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="25\input.txt">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <!--INSERTION POINT MARKER (Used with script)-->
     </ItemGroup>
 

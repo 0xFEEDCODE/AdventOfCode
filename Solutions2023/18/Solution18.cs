@@ -1,7 +1,5 @@
 using System.Globalization;
 
-using BenchmarkDotNet.Columns;
-
 using Framework;
 
 namespace Solutions2023;
@@ -149,6 +147,7 @@ public class Solution18() : SolutionFramework(18)
         AssignAnswer1(area + nBoundaries);
         return Answers;
 
+        /*
         var dU = 0;
         var dD = 0;
         var verticalLines = new List<(int C, Range R, Dir? Dir)>();
@@ -203,7 +202,7 @@ public class Solution18() : SolutionFramework(18)
                     verticalLines.Add(prevVl);
                     e--;
                 }
-                */
+                #1#
                 
                 verticalLines.Add((vl.Cols.S, new Range(s, e), dir));
             }
@@ -258,7 +257,7 @@ public class Solution18() : SolutionFramework(18)
                         grid[intersection.S][j] = '#';
                     }
                 }
-                */
+                #1#
 
                 verticalLines.Remove(vl1);
                 verticalLines.Remove(vl2);
@@ -317,6 +316,7 @@ public class Solution18() : SolutionFramework(18)
 
 
         return Answers;
+    */
     }
 
     private static bool RangeContains(Range r1, Range r2) => (r1.S <= r2.S && r1.E >= r2.E);

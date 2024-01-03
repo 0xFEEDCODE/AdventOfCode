@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <None Update="1\input.txt">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="2\input.txt">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="3\input.txt">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <!--INSERTION POINT MARKER (Used with script)-->
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\Framework\Framework.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,182 @@
+using Framework;
+
+namespace Solutions2023;
+
+public class Solution23() : SolutionFramework(23)
+{
+    enum Dir { L, D, R, U };
+    public override string[] Solve()
+    {
+        var gr = InputAsGrid<char>();
+        var start = new GridPos(0, 1);
+        var end = new GridPos(gr.Length-1, gr[0].Length-2);
+        
+        var visited = new HashSet<GridPos>();
+
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        var longestPath = 0;
+        GetLongestPath(gr, start, end);
+        
+        AssignAnswer1(longestPath);
+
+        return Answers;
+
+        void GetLongestPath(char[][] grid, GridPos startPos, GridPos endPos)
+        {
+            var st = new Stack<(GridPos, int, bool)>();
+            st.Push((startPos, 0, false));
+
+            while (st.Any())
+            {
+                var (curr, dist, isRemoval) = st.Pop();
+                
+                if (curr == endPos)
+                {
+                    longestPath.AssignIfBigger(dist);
+                }
+                
+                if (isRemoval)
+                {
+                    visited.Remove(curr);
+                    continue;
+                }
+                
+                st.Push((curr, dist, true));
+                foreach (var (next, _) in grid.GetAllAdjacentCells(curr).Where(c => c.val != '#' && !visited.Contains(c.pos)))
+                {
+                    st.Push((next, dist+1, false));
+                }
+                
+                visited.Add(curr);
+            }
+        }
+    }
+
+    ICollection<GridPos> Search3(char[][] grid, GridPos startPos, GridPos endPos)
+    {
+        var frontier = new PriorityQueue<(GridPos, Dir, List<GridPos>), int>();
+        frontier.Enqueue((startPos, Dir.D, new List<GridPos>()), 0);
+
+        var traversed = new Dictionary<GridPos, GridPos> { { startPos, new GridPos(-1, -1) } };
+
+        while (frontier.Count > 0)
+        {
+            var (cur, dir, visited) = frontier.Dequeue();
+            if (visited.Contains(cur))
+            {
+                continue;
+            }
+            visited.Add(cur);
+            
+            if (cur == endPos)
+            {
+                var path = visited;
+                if (NSlot != path.Count - 1)
+                {
+                    Console.WriteLine((path.Count-1, NSlot));
+                }
+                NSlot.AssignIfBigger(path.Count-1);
+                continue;
+            }
+            
+            foreach (var (next, _) in grid.GetAllAdjacentCells(cur).Where(x => x.val != '#'))
+            {
+                var nextDir = (next.R - cur.R, next.C - cur.C) switch
+                {
+                    (0, +1) => Dir.R,
+                    (0, -1) => Dir.L,
+                    (-1, 0) => Dir.U,
+                    (+1, 0) => Dir.D,
+                };
+
+                switch (dir)
+                {
+                    case Dir.L when nextDir is Dir.R:
+                    case Dir.R when nextDir is Dir.L:
+                    case Dir.U when nextDir is Dir.D:
+                    case Dir.D when nextDir is Dir.U:
+                        continue;
+                }
+                
+                frontier.Enqueue((next, nextDir, visited.ToList()), visited.Count * - 1 );
+                traversed.TryAdd(next, cur);
+            }
+        }
+        return Array.Empty<GridPos>();
+    }
+    
+    ICollection<GridPos> Search2(char[][] grid, GridPos startPos, GridPos endPos)
+    {
+        var pq = new PriorityQueue<GridPos, int>();
+        pq.Enqueue(startPos, 0);
+
+        var cameFrom = new Dictionary<GridPos, GridPos>();
+        var costSoFar = new Dictionary<GridPos, int>();
+
+        var path = new List<GridPos>();
+        var totalCost = 0;
+
+        cameFrom[startPos] = new GridPos(-1, -1);
+        costSoFar[startPos] = 0;
+        
+
+        while (pq.Count > 0)
+        {
+            var current = pq.Dequeue();
+            if (current == endPos)
+            {
+                path.Clear();
+                var temp = current;
+                while (cameFrom.ContainsKey(temp))
+                {
+                    path.Add(temp);
+                    temp = cameFrom[temp];
+                }
+                NSlot.AssignIfBigger(path.Count-1);
+                Console.WriteLine(path.Count-1);
+            }
+            
+            foreach (var (next, _) in grid.GetAllAdjacentCells(current).Where(c => c.val != '#' && c.pos != cameFrom[current]))
+            {
+                
+                /*
+                var currentCell = grid.GetCell(current);
+                switch (currentCell)
+                {
+                    case '>' when next.C != current.C + 1:
+                    case '<' when next.C != current.C - 1:
+                    case '^' when next.R != current.R - 1:
+                    case 'v' when next.R != current.R + 1:
+                        continue;
+                }
+                */
+
+                /*
+               for next in graph.neighbors(current):
+                  new_cost = cost_so_far[current] + graph.cost(current, next)
+                  if next not in cost_so_far or new_cost < cost_so_far[next]:
+                     cost_so_far[next] = new_cost
+                     priority = new_cost + heuristic(goal, next)
+                     frontier.put(next, priority)
+                     came_from[next] = current
+                */
+                
+                var newCost = costSoFar[current] - 1;
+                if (!costSoFar.ContainsKey(next) || newCost < costSoFar[next])
+                {
+                    if(pq.UnorderedItems.Any(x => x.Element == next))
+                    {
+                        continue;
+                    }
+                    
+                    costSoFar[next] = newCost;
+                    cameFrom[next] = current;
+                    pq.Enqueue(next, newCost + Heuristic(next, endPos) * -1);
+                }
+            }
+        }
+        return path;
+        
+        int Heuristic(GridPos x, GridPos y) => Math.Abs(x.R - y.R) + Math.Abs(x.C - y.C);
+    }
+}

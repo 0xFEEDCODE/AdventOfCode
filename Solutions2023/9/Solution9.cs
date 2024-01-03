@@ -2,7 +2,7 @@ using Framework;
 
 namespace Solutions2023;
 
-public static class Ext
+public static partial class Ext
 {
     public static double[] GetDiffs(this double[] src)
     {
