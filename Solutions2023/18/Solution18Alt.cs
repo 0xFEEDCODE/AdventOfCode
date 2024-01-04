@@ -97,7 +97,7 @@ public class Solution18Alt() : SolutionFramework(18)
     }
 }
 
-static class Extensions
+static partial class Extensions
 {
     public static double GetOverlappingArea(this IEnumerable<(int vLineLeft, int vLineRight)> vLines, (int start, int end) vLine) => vLines.GetOverlappingArea(vLine.start, vLine.end);
     public static double GetOverlappingArea(this IEnumerable<(int vLineLeft, int vLineRight)> vLines, int start, int end)
